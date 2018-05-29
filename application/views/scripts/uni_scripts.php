@@ -867,17 +867,23 @@ function leave_day_type(){
 }
 function leave_days_calc(){ 
     $('#leave_day_type').hide();
-    var d1     = $('#req_leave_date_from').datepicker('getDate'); 
+    
+    var new_cnt = 0;
+
+    if($('#req_leave_date_from').val()!=''){
+        var d1     = $('#req_leave_date_from').datepicker('getDate'); 
     var d2     = $('#req_leave_date_to').datepicker('getDate'); 
-	var new_cnt = 0;
+    
     if(d1  != null && d2 != null){
-		while(d1 <= d2){
-		   if(d1.getDay() != 0){  new_cnt++; }
-		   var newDate = d1.setDate(d1.getDate() + 1);
-		   d1 = new Date(newDate);
-		} 
-		//alert(new_cnt);
-	}  
+        while(d1 <= d2){
+           if(d1.getDay() != 0){  new_cnt++; }
+           var newDate = d1.setDate(d1.getDate() + 1);
+           d1 = new Date(newDate);
+        } 
+        //alert(new_cnt);
+    }
+    }
+      
     /*var oneDay = 24*60*60*1000;
     var diff   = 0;
     if (d1 && d2) {

@@ -110,8 +110,10 @@
 			<?php
 			if (User::is_admin()) {
 				echo modules::run('sidebar/admin_menu');
+				
 			}elseif (User::is_staff()) {
 				echo modules::run('sidebar/collaborator_menu');
+				 
 			}elseif (User::is_client()) {
 				echo modules::run('sidebar/client_menu');
 			}else{

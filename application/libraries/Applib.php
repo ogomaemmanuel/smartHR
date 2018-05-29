@@ -477,7 +477,8 @@ class AppLib {
             curl_close($ch);
 
             $updates = json_decode($output, TRUE);
-            foreach ($updates as $up) {
+            if(!empty($updates)){ 
+             foreach ($updates as $up) {
                 $exists = $this->ci->db->where('build',$up['build'])->get('updates')->result();
                 if (count($exists) == 0) {
                     date_default_timezone_set(config_item('timezone'));
@@ -492,6 +493,7 @@ class AppLib {
                         'dependencies' => $up['dependencies']
                     ));
                 }
+             }
             }
             $this->ci->db->where('config_key','last_check')->update('config',array('value' => time()));
         }
