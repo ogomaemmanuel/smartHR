@@ -64,7 +64,51 @@ function inser_chat($data,$sts)
 		}
 	}		 
 	 
-	 
+	 function new_chat_user($name='')
+	 {
+	 	$user_id = $this->session->userdata('user_id');
+	 	$query = $this->db->query("SELECT chat_from,chat_to FROM fx_chats WHERE chat_from = $user_id OR chat_to = $user_id");
+	 	$ids = array();
+	 	$ids[] = $user_id;
+	 	if($query->num_rows() > 0){
+	 		$datas = $query->result_array();
+	 		foreach ($datas as  $value) {
+	 			$ids[] = $value['chat_from'];
+	 			$ids[] = $value['chat_to'];
+	 		}
+	 		$ids = array_unique($ids);
+	 	}
+
+	 	$query_data = $this->db->query("SELECT fullname,user_id FROM fx_account_details WHERE user_id NOT IN (".implode(',',$ids).") AND fullname like '%".$name."%'");
+		$results = array();
+		 
+		if($query_data->num_rows() > 0){
+			$results = $query_data->result_array();
+		}
+		return $results;
+	 }
+
+	 public function new_chat_userdetails($id='')
+	 {
+	 	$query_data = $this->db->query("SELECT fullname,user_id,avatar FROM fx_account_details WHERE user_id = $id")->row_array();
+	 	
+	 	$from_id = $this->session->userdata('user_id');
+		$to_id = $query_data['user_id'];	
+		$array['chat_from'] = $from_id;
+		$array['chat_to']= $to_id;
+		$array['chat_date_time']= date('Y-m-d h:i:s'); 
+		$id = $this->inser_chat($array,1);
+
+	   $data2['text_from']         = $from_id;
+	   $data2['text_to']           = $to_id;
+	   $data2['text_content']      = 'Hi'; 
+ 	   $data2['text_date_time']    = date('Y-m-d h:i:s'); 
+	   $this->db->insert('fx_chats_text',$data2);
+ 	   $last_id                    = $this->db->insert_id();
+	    $query_data['last_id']	= $last_id;
+	    $query_data['lastdate']	= date('d M',strtotime($data2['text_date_time']));
+	    return $query_data;
+	 }
 	 
 	 
 	 

@@ -26,6 +26,10 @@ class Chats extends MX_Controller {
 			$data['form']         = TRUE; 
 			$data['page']         = 'chats';  
 			$data['chat_history'] = $this->chats_model->user_chat_history($this->tank_auth->get_user_id());
+			/*echo $this->db->last_query();
+			echo "<pre>";
+			print_r($data['chat_history']);
+			exit;*/
 			$data['role']         = $this->tank_auth->get_role_id();
 			$this->template
 				 ->set_layout('users')
@@ -34,6 +38,24 @@ class Chats extends MX_Controller {
 		   redirect('');	
 		}
 	}
+
+	function new_chat_user(){
+		if($this->input->post('name')){
+			$name = $this->input->post('name');
+			$new_users = $this->chats_model->new_chat_user($name);
+			echo json_encode($new_users);
+			die();
+		}
+	}
+	function new_chat_userdetails(){
+		if($this->input->post('id')){
+			$id = $this->input->post('id');
+			$new_users = $this->chats_model->new_chat_userdetails($id);
+			echo json_encode($new_users);
+			die();
+		}
+	}
+
 	function all_new_chats()
 	{ 
  	   $sess_id      =  $this->tank_auth->get_user_id();
