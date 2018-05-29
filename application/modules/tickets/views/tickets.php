@@ -140,7 +140,7 @@
 
 
                       <td class="">
-                      <?php echo App::get_dept_by_id($t->department); ?>
+                      <?php if(!empty($t->department)){echo App::get_dept_by_id($t->department);}else{echo '-';} ?>
                       </td>
 
                       <td>
