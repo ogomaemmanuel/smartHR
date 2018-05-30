@@ -828,15 +828,8 @@ html {
     background-color: #f7f7f7;
     overflow-x: hidden;
 }
-body {
-    /*font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-    /*font-size: 13px;*/
-    /*color: #717171;*/
-    background-color: transparent;
-    -webkit-font-smoothing: antialiased;
-}
 html {height:100%;}
-body{font-family: 'Fira Sans', sans-serif;font-size:14px;color:#333;background-color:#eff3f6;overflow-x: hidden;height:100%;}
+body{font-family: 'Fira Sans', sans-serif;font-size:14px;color:#333;background-color:#eff3f6;overflow-x: hidden;height:100%; -webkit-font-smoothing: antialiased;}
 h1, h2, h3, h4, h5, h6{margin-top:0;}
 a:hover,
 a:active,
