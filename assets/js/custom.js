@@ -74,12 +74,12 @@ $(document).on('keyup','#search_user',function(){
     var name = $(this).val();
     $.post(base_url+'chats/new_chat_user',{name:name},function(data,status){
        var newdata =  JSON.parse(data);
-       var html = '<ul>';
+       var html = '<ul class="auto_suggestion">';
         if(newdata.length > 0){
             
              $.each(newdata, function(i, item) {
 
-                html = html +'<li onclick="get_new_user('+item.user_id+')">'+item.fullname+'</li>';
+                html = html +'<li onclick="get_new_user('+item.user_id+');remove_current(this);email_list_active(this);chat_details('+item.user_id+')">'+item.fullname+'</li>';
             });
         }
         html = html +'</ul>';
@@ -92,7 +92,9 @@ $(document).on('keyup','#search_user',function(){
 function get_new_user(id) {
     $.post(base_url+'chats/new_chat_userdetails',{id:id},function(data,status){
           var newdata =  JSON.parse(data);
-        $('.chat_user_lst').append('<li class="" chat_id="'+newdata.user_id+'" onclick="email_list_active(this);chat_details('+newdata.user_id+');">' +
+
+        $('.chat_user_lst li').removeClass('active_cls');
+           $('.chat_user_lst').append('<li class="active_cls" chat_id="'+newdata.user_id+'" onclick="email_list_active(this);chat_details('+newdata.user_id+');">' +
                     '<div class="chat-user">' +
                      ' <img width="35" src="'+base_url+'assets/avatar/'+newdata.avatar+'" class="img-circle">' +
                       '                      </div>' +
@@ -102,13 +104,17 @@ function get_new_user(id) {
                        '     <i class="fa fa-clock-o"></i> <span class="usr_last_chat_date">'+newdata.lastdate+'</span>' +
                        ' </span>' +
                        ' <p class="msg-text"> ' +
-                        '    <span class="chat-msg usr_last_chat_det">Hi</span>' +
+                        '    <span class="chat-msg usr_last_chat_det">Chat not available</span>' +
                           '  <b class="badge bg-warning pull-right" style="display:none" id="new_chat_cnt_'+newdata.user_id+'"> 0 </b>  ' +
                         '</p>' +
                     '</div>' +
                 '</li>');
     });
     
+}
+
+function remove_current(e) {
+    $(e).remove();
 }
 
 /*********************************/

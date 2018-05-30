@@ -492,7 +492,11 @@ class Chats extends MX_Controller {
 		 $chat_det  = $this->chats_model->chat_text_details($chat_id,$sess_id,2);
     	 $html 	  = ''; 
 		 if(!empty($chat_det)){ 
-  			 foreach($chat_det as $key => $val){ 
+  			 
+  			 if(!empty($chat_det[0]['text_content'])){ 
+
+  			 foreach($chat_det as $key => $val){
+
  				 if($val['text_from'] == $sess_id){  
 				    $prf_img2   = ''; 
 					 if(config_item('use_gravatar') == 'TRUE' AND 
@@ -555,6 +559,7 @@ class Chats extends MX_Controller {
 					 $data_up['text_status'] = 1;
 					 $this->db->update('fx_chats_text',$data_up,array('id'=>$val['id']));
 				 } 
+		 }
 		 }
 		 }else {
 		     $html = '<p style="color: red"> &nbsp; &nbsp; No Chats Availabe </p>';	 
