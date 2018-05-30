@@ -111,7 +111,8 @@ if (isset($datatables)) {
         });
             $("#table-tickets").dataTable().fnSort([[0,'desc']]);
             $("#table-tickets-archive").dataTable().fnSort([[1,'desc']]);
-            $("#table-projects").dataTable().fnSort([[0,'desc']]);
+           
+
             $("#table-projects-client").dataTable().fnSort([[4,'asc']]);
             $("#table-projects-archive").dataTable().fnSort([[5,'desc']]);
             $("#table-teams").dataTable().fnSort([[0,'asc']]);
@@ -122,7 +123,44 @@ if (isset($datatables)) {
             $("#table-links").dataTable().fnSort([[0,'asc']]);
             $("#table-project-timelog").dataTable().fnSort([[0,'desc']]);
             $("#table-tasks-timelog").dataTable().fnSort([[0,'desc']]);
+            
             $("#table-clients").dataTable().fnSort([[0,'asc']]);
+            
+            /* client search Hide start */
+            
+            var tableclients = $('#table-clients-compaines').DataTable();
+
+            $('#client_search').click(function(){
+                var clientname = $('#client_name').val();
+                var client_email = $('#client_email').val();
+                tableclients
+                .columns( 0 )
+                .search(  clientname )
+                .columns( 4 )
+                .search(  client_email )
+                .draw();
+            });
+            $('#table-clients-compaines_filter').hide();
+            
+
+            /* client search Hide end */
+            
+             var tableprojects = $("#table-projects").DataTable(); //dataTable().fnSort([[0,'desc']]);
+               
+               $('#project_search_btn').click(function(){
+
+                var project_title = $('#project_title').val();
+                var client_name = $('#client_name').val();
+
+                tableprojects
+                .columns( 1 )
+                .search(  project_title )
+                .columns( 2 )
+                .search(  client_name )
+                .draw();
+            });
+             $('#table-projects_filter').hide();
+
             $("#table-client-details-1").dataTable().fnSort([[1,'asc']]);
             $("#table-client-details-2").dataTable().fnSort([[2,'desc']]);
             $("#table-client-details-3").dataTable().fnSort([[0,'asc']]);
