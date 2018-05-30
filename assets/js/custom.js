@@ -79,7 +79,7 @@ $(document).on('keyup','#search_user',function(){
             
              $.each(newdata, function(i, item) {
 
-                html = html +'<li onclick="get_new_user('+item.user_id+');remove_current(this);email_list_active(this);chat_details('+item.user_id+')">'+item.fullname+'</li>';
+                html = html +'<li onclick="get_new_user('+item.user_id+');remove_current(this);email_list_active(this);chat_details('+item.user_id+')"><a href="javascript:void(0)">'+item.fullname+'</a></li>';
             });
         }
         html = html +'</ul>';
