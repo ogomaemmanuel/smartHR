@@ -3,6 +3,14 @@
 <div class="chat-main-wrapper">
 	<div class="col-xs-3 profile-right chat-profile-view">
 		<div class="chat-user-list">
+			<div class="new_chat_btn">
+				<a href="javascript:void(0)" class="btn btn-primary" id="new_chat" >Create new message</a>
+				<div class="new_chat_search" style="display: none;">
+					<input type="text" name="search_user" id="search_user" value=""   class="form-control">
+					<div class="new_user_list"></div>
+				</div>
+			</div>
+			<br/>
 			<ul class="chat_user_lst">
 				<?php 
 				$cnt = 0;

@@ -20,71 +20,10 @@
 		</div>
 	</div>
 	<?php  }  ?>  
-	<div class="panel panel-white new_leave_reqst" style="display:none">
-		<div class="panel-heading">
-			<h3 class="panel-title">New Leave Request</h3>
-		</div>
-		<div class="panel-body"> 
-			<?php $attributes = array('class' => 'bs-example form-horizontal');
-			echo form_open(base_url().'leaves/add',$attributes); ?> 
-			<?php $leav_types =  $this->db->query("SELECT * FROM `fx_leave_types` where status = 0")->result_array();  ?> 
-				<div class="form-group">
-					<label class="col-lg-2 control-label"> Leave Type <span class="text-danger">*</span></label>
-					<div class="col-lg-3">
-						<select class="select2-option" style="width:100%;" id="req_leave_type" name="req_leave_type" required> 
-							<option value=""> -- Select Leave Type -- </option>
-							<?php for($i = 0;$i < count($leav_types); $i++ ){ ?>
-							<option value="<?=$leav_types[$i]['id']?>"><?=$leav_types[$i]['leave_type'].' - '.$leav_types[$i]['leave_days'].' Days'?></option>
-							<?php } ?>       
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2 control-label"> Date From <span class="text-danger">*</span></label>
-					<div class="col-lg-3">
-						<input class="leave_datepicker form-control" size="16" type="text"
-						onchange="leave_days_calc();"
-						  value="" name="req_leave_date_from" id="req_leave_date_from" data-date-format="dd-mm-yyyy" required > 
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2 control-label"> Date To <span class="text-danger">*</span></label>
-					<div class="col-lg-3">
-					<input class="leave_datepicker form-control" size="16" type="text"  
-					onchange="leave_days_calc();"
-					value="" name="req_leave_date_to" id="req_leave_date_to" data-date-format="dd-mm-yyyy" required > 
-					</div>
-				</div>
-				<div class="form-group" style="display:none" id="leave_day_type">
-					<label class="col-lg-2 control-label">  &nbsp; </label>
-					<div class="col-lg-3"> 
-					 Full Day <input type="radio" name="req_leave_day_type" value="1" checked="checked" onclick="leave_day_type();"> 
-					 &nbsp; First Half <input type="radio" name="req_leave_day_type" value="2" onclick="leave_day_type();"> 
-					 &nbsp; Second Half <input type="radio" name="req_leave_day_type" value="3" onclick="leave_day_type();">
-					 </div>
-				</div> 
-				<div class="form-group">
-					<label class="col-lg-2 control-label"> Number of days </label>
-					<div class="col-lg-1">
-						<input type="text" name="req_leave_count" class="form-control" id="req_leave_count" value="" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2 control-label"> Leave reason <span class="text-danger">*</span></label>
-					<div class="col-lg-4">
-						<textarea class="form-control" name="req_leave_reason" required> </textarea>
-					</div>
-				</div> 
-				<div class="form-group">
-					<label class="col-lg-2 control-label"> &nbsp; </label>
-					<div class="col-lg-4">
-						<button class="btn btn-success" type="submit"> Send Leave Request </button>
-						<button class="btn btn-danger" type="button" onclick="$('.new_leave_reqst').hide();"> Cancel </button>
-					 </div>
-				</div> 
-			</form> 
-		</div>
-	</div>
+	
+	<?php $leav_types =  $this->db->query("SELECT * FROM `fx_leave_types` where status = 0")->result_array();  ?> 
+
+	
 	<?php if ($this->tank_auth->user_role($this->tank_auth->get_role_id()) == 'admin') { ?>
 	<!-- user leaves -->
 		<div class="row filter-row">
@@ -143,7 +82,7 @@
 				</div>
 			</div>
 			<div class="col-sm-4 col-md-4 col-xs-6 col-lg-2">
-				<a href="<?php base_url();?>leaves/search_leaves" class="btn btn-success btn-block" id="admin_search_leave"> Search </a>
+				<a href="javascript:void(0)" class="btn btn-success btn-block" id="admin_search_leave"> Search </a>
 			</div>
 		</div>
 		<div class="table-responsive">
@@ -169,7 +108,10 @@
 					</tr>
 				</thead>
 				<tbody id="admin_leave_tbl">
-					<?php  foreach($leave_list as $key => $levs){  ?>
+					<?php 
+					if(!empty($leave_list)){
+					 foreach($leave_list as $key => $levs){  ?>
+					
 					<tr>
 						<td><?=$key+1?></td>
 						<td><?=$levs['fullname']?></td>
@@ -220,13 +162,83 @@
 						</td>
 					</tr>
 				 <?php  } ?>  
+				 <?php  }else{ ?>
+						 <tr><td colspan="9">No details were found</td></tr>
+						 <?php } ?>  
 				</tbody>
 		   </table>    
 	   </div>
 		<!-- user leave end -->
 		<?php } ?>
 		<?php if ($this->tank_auth->user_role($this->tank_auth->get_role_id()) != 'admin') { ?>
+
 		<!-- user leaves -->
+
+		<div class="panel panel-white new_leave_reqst" style="display:none">
+		<div class="panel-heading">
+			<h3 class="panel-title">New Leave Request</h3>
+		</div>
+		<div class="panel-body"> 
+			<?php $attributes = array('class' => 'bs-example form-horizontal');
+			echo form_open(base_url().'leaves/add',$attributes); ?> 
+	
+				<div class="form-group">
+					<label class="col-lg-2 control-label"> Leave Type <span class="text-danger">*</span></label>
+					<div class="col-lg-3">
+						<select class="select2-option" style="width:100%;" id="req_leave_type" name="req_leave_type" required> 
+							<option value=""> -- Select Leave Type -- </option>
+							<?php for($i = 0;$i < count($leav_types); $i++ ){ ?>
+							<option value="<?=$leav_types[$i]['id']?>"><?=$leav_types[$i]['leave_type'].' - '.$leav_types[$i]['leave_days'].' Days'?></option>
+							<?php } ?>       
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"> Date From <span class="text-danger">*</span></label>
+					<div class="col-lg-3">
+						<input class="leave_datepicker form-control" size="16" type="text"
+						onchange="leave_days_calc();"
+						  value="" name="req_leave_date_from" id="req_leave_date_from" data-date-format="dd-mm-yyyy" required > 
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"> Date To <span class="text-danger">*</span></label>
+					<div class="col-lg-3">
+					<input class="leave_datepicker form-control" size="16" type="text"  
+					onchange="leave_days_calc();"
+					value="" name="req_leave_date_to" id="req_leave_date_to" data-date-format="dd-mm-yyyy" required > 
+					</div>
+				</div>
+				<div class="form-group" style="display:none" id="leave_day_type">
+					<label class="col-lg-2 control-label">  &nbsp; </label>
+					<div class="col-lg-3"> 
+					 Full Day <input type="radio" name="req_leave_day_type" value="1" checked="checked" onclick="leave_day_type();"> 
+					 &nbsp; First Half <input type="radio" name="req_leave_day_type" value="2" onclick="leave_day_type();"> 
+					 &nbsp; Second Half <input type="radio" name="req_leave_day_type" value="3" onclick="leave_day_type();">
+					 </div>
+				</div> 
+				<div class="form-group">
+					<label class="col-lg-2 control-label"> Number of days </label>
+					<div class="col-lg-1">
+						<input type="text" name="req_leave_count" class="form-control" id="req_leave_count" value="" readonly="readonly">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2 control-label"> Leave reason <span class="text-danger">*</span></label>
+					<div class="col-lg-4">
+						<textarea class="form-control" name="req_leave_reason" required> </textarea>
+					</div>
+				</div> 
+				<div class="form-group">
+					<label class="col-lg-2 control-label"> &nbsp; </label>
+					<div class="col-lg-4">
+						<button class="btn btn-success" type="submit"> Send Leave Request </button>
+						<button class="btn btn-danger" type="button" onclick="$('.new_leave_reqst').hide();"> Cancel </button>
+					 </div>
+				</div> 
+			</form> 
+		</div>
+	</div> 
 		<div class="panel panel-table">
 			<div class="panel-heading">
 				<h3 class="panel-title">Leaves Details</h3>
@@ -254,7 +266,9 @@
 							</tr>
 						</thead>
 						<tbody>
-						 <?php  foreach($leave_list as $key => $levs){  ?>
+						 <?php 
+						 	if(!empty($leave_list)){
+						  foreach($leave_list as $key => $levs){  ?>
 							<tr>
 								<td><?=$key+1?></td>
 								<td><?=$levs['l_type']?></td>
@@ -300,6 +314,9 @@
 								</td>
 							</tr>
 						 <?php  } ?>  
+						 <?php  }else{ ?>
+						 <tr><td colspan="9">No details were found</td></tr>
+						 <?php } ?>  
 						</tbody>
 				   </table>    
 				</div>

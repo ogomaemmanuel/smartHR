@@ -64,3 +64,57 @@ function update_timer() {
         setTimeout('update_timer()', 1000);
     }
 }
+
+/***************2018-05-29 *******************/ 
+$(document).on('click','#new_chat',function(){
+    $( ".new_chat_search" ).slideToggle( "slow", function() {});
+});
+
+$(document).on('keyup','#search_user',function(){
+    var name = $(this).val();
+    $.post(base_url+'chats/new_chat_user',{name:name},function(data,status){
+       var newdata =  JSON.parse(data);
+       var html = '<ul class="auto_suggestion">';
+        if(newdata.length > 0){
+            
+             $.each(newdata, function(i, item) {
+
+                html = html +'<li onclick="get_new_user('+item.user_id+');remove_current(this);email_list_active(this);chat_details('+item.user_id+')"><a href="javascript:void(0)">'+item.fullname+'</a></li>';
+            });
+        }
+        html = html +'</ul>';
+       $('.new_user_list').html(html)
+    });
+    
+});
+
+
+function get_new_user(id) {
+    $.post(base_url+'chats/new_chat_userdetails',{id:id},function(data,status){
+          var newdata =  JSON.parse(data);
+
+        $('.chat_user_lst li').removeClass('active_cls');
+           $('.chat_user_lst').append('<li class="active_cls" chat_id="'+newdata.user_id+'" onclick="email_list_active(this);chat_details('+newdata.user_id+');">' +
+                    '<div class="chat-user">' +
+                     ' <img width="35" src="'+base_url+'assets/avatar/'+newdata.avatar+'" class="img-circle">' +
+                      '                      </div>' +
+                    '<div class="chat-user-info chat_usr_'+newdata.user_id+'">' +
+                     '   <span class="chatter-name">'+newdata.fullname+'</span>' +
+                      '  <span class="chat-last-time">' +
+                       '     <i class="fa fa-clock-o"></i> <span class="usr_last_chat_date">'+newdata.lastdate+'</span>' +
+                       ' </span>' +
+                       ' <p class="msg-text"> ' +
+                        '    <span class="chat-msg usr_last_chat_det">Chat not available</span>' +
+                          '  <b class="badge bg-warning pull-right" style="display:none" id="new_chat_cnt_'+newdata.user_id+'"> 0 </b>  ' +
+                        '</p>' +
+                    '</div>' +
+                '</li>');
+    });
+    
+}
+
+function remove_current(e) {
+    $(e).remove();
+}
+
+/*********************************/

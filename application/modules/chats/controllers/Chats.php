@@ -26,6 +26,10 @@ class Chats extends MX_Controller {
 			$data['form']         = TRUE; 
 			$data['page']         = 'chats';  
 			$data['chat_history'] = $this->chats_model->user_chat_history($this->tank_auth->get_user_id());
+			/*echo $this->db->last_query();
+			echo "<pre>";
+			print_r($data['chat_history']);
+			exit;*/
 			$data['role']         = $this->tank_auth->get_role_id();
 			$this->template
 				 ->set_layout('users')
@@ -34,6 +38,24 @@ class Chats extends MX_Controller {
 		   redirect('');	
 		}
 	}
+
+	function new_chat_user(){
+		if($this->input->post('name')){
+			$name = $this->input->post('name');
+			$new_users = $this->chats_model->new_chat_user($name);
+			echo json_encode($new_users);
+			die();
+		}
+	}
+	function new_chat_userdetails(){
+		if($this->input->post('id')){
+			$id = $this->input->post('id');
+			$new_users = $this->chats_model->new_chat_userdetails($id);
+			echo json_encode($new_users);
+			die();
+		}
+	}
+
 	function all_new_chats()
 	{ 
  	   $sess_id      =  $this->tank_auth->get_user_id();
@@ -470,7 +492,11 @@ class Chats extends MX_Controller {
 		 $chat_det  = $this->chats_model->chat_text_details($chat_id,$sess_id,2);
     	 $html 	  = ''; 
 		 if(!empty($chat_det)){ 
-  			 foreach($chat_det as $key => $val){ 
+  			 
+  			 if(!empty($chat_det[0]['text_content'])){ 
+
+  			 foreach($chat_det as $key => $val){
+
  				 if($val['text_from'] == $sess_id){  
 				    $prf_img2   = ''; 
 					 if(config_item('use_gravatar') == 'TRUE' AND 
@@ -533,6 +559,7 @@ class Chats extends MX_Controller {
 					 $data_up['text_status'] = 1;
 					 $this->db->update('fx_chats_text',$data_up,array('id'=>$val['id']));
 				 } 
+		 }
 		 }
 		 }else {
 		     $html = '<p style="color: red"> &nbsp; &nbsp; No Chats Availabe </p>';	 

@@ -4,7 +4,8 @@
 							<h4 class="page-title"><?=lang('system_users')?></h4>
 						</div>
 						<div class="col-xs-8 text-right m-b-30">
-							<a href="#aside" data-toggle="class:show" class="btn btn-primary pull-right rounded"><i class="fa fa-plus"></i> <?=lang('new_user')?></a>
+							<!-- <a href="#aside" data-toggle="class:show" class="btn btn-primary pull-right rounded"><i class="fa fa-plus"></i> <?=lang('new_user')?></a> -->
+							<a href="javascript:void(0)" class="btn btn-primary pull-right rounded" data-toggle="modal" data-target="#add_new_user"><i class="fa fa-plus"></i> <?=lang('new_user')?></a>
 						</div>
 					</div>				
 					<div class="row">
@@ -92,9 +93,16 @@
 							</div>
 						</div>
 
-			<!-- .aside -->
-			<aside class="user-sidebar hide" id="aside">
-						<?php
+<div id="add_new_user" class="modal custom-modal fade" role="dialog" style="display: none;">
+				<div class="modal-dialog">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<div class="modal-content modal-lg">
+						<div class="modal-header">
+							<h4 class="modal-title">Add New User</h4>
+						</div>
+						<div class="modal-body m-b-30">
+							
+							 <?php
 						echo form_open(base_url().'auth/register_user'); ?>
 						<p class="text-danger"><?php echo $this->session->flashdata('form_errors'); ?></p>
 						<input type="hidden" name="r_url" value="<?=base_url()?>users/account">
@@ -145,6 +153,17 @@
 						</div>
 						<div class="m-t-lg text-center"><button class="btn btn-success"><?=lang('register_user')?></button></div>
 					</form>
+							 
+								 
+						 
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- .aside -->
+			<aside class="user-sidebar hide" id="aside">
+						
 		</aside>
 		<!-- /.aside -->
 </div>
