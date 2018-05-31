@@ -28,6 +28,7 @@ class Estimates extends MX_Controller
     {
         $data['page'] = lang('estimates');
         $data['datatables'] = true;
+        $data['datepicker'] = true;
         $data['estimates'] = $this->_estimate_list();
         $this->template
     ->set_layout('users')

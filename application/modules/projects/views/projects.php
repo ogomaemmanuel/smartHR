@@ -58,7 +58,7 @@
 								<label class="control-label">Client Name</label>
 								<input type="text" class="form-control floating"  id="client_name" name="client_name">
 							</div>
-						</div>
+						</div> 
 						<!-- <div class="col-sm-3 col-xs-6"> 
 							<div class="form-group form-focus select-focus">
 								<label class="control-label">Role</label>

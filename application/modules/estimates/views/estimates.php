@@ -10,10 +10,40 @@
 			<?php } ?>
 		</div>
 	</div>
+	
+	<div class="row filter-row">
+						<div class="col-sm-3 col-xs-6">  
+							<div class="form-group form-focus focused">
+								<label class="control-label">From</label>
+								<div class="cal-icon"><input class="form-control floating datepicker-input" type="text" id="estimates_from" name="estimates_from"></div>
+							</div>
+						</div>
+						<div class="col-sm-3 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label">To</label>
+								<div class="cal-icon"><input class="form-control floating datepicker-input" id="estimates_to" name="estimates_to" type="text"></div>
+							</div>
+						</div>
+						<div class="col-sm-3 col-xs-6"> 
+							<div class="form-group form-focus select-focus">
+								<label class="control-label">Status</label>
+								<select class="select floating form-control" id="estimates_status" name="estimates_status"> 
+									<option value="">Select Status</option>
+									<option value="Pending">Pending</option>
+									<option value="Accepted">Accepted</option>
+								</select> 
+							</div>
+						</div>
+						<div class="col-sm-3 col-xs-6">  
+				<a href="javascript:void(0)" class="btn btn-success btn-block" id="search_estimates_btn"> Search </a>  
+						</div>     
+                    </div>
+
 	<div class="table-responsive">
-		<table id="table-estimates" class="table table-striped custom-table m-b-0 AppendDataTables">
+		<table id="table-estimates" class="table table-striped custom-table m-b-0">
 			<thead>
 				<tr>
+					<th style="width:5px; display:none;"></th>
 					<th style="width:5px; display:none;"></th>
 					<th class=""><?=lang('estimate')?></th>
 					<th class=""><?=lang('client_name')?></th>
@@ -32,6 +62,7 @@
 				?>
 				<tr>
 					<td style="display:none;"><?=$e->est_id?></td>
+					<td style="display:none;"><?=date('m/d/Y',strtotime($e->due_date));?></td>
 					<td>
 						<a class="text-info" href="<?=base_url()?>estimates/view/<?=$e->est_id?>">
 							<?=$e->reference_no?>

@@ -55,6 +55,56 @@
 							
 						</div>
 					</div>
+
+          <div class="row filter-row">
+            <div class="col-sm-3 col-md-2 col-xs-6">  
+              <div class="form-group form-focus">
+                <label class="control-label">Reporter</label>
+                <input type="text" class="form-control floating" id="employee_name" name="employee_name" />
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-2 col-xs-6"> 
+              <div class="form-group form-focus select-focus">
+                <label class="control-label">Status</label>
+                <select class="select floating form-control" id="ticket_status" name="ticket_status"> 
+                  <option value=""> All Tickets</option>
+                  <option value="Pending"> Pending </option>
+                  <option value="Closed"> Closed </option>
+                  <option value="Open"> Open </option>
+                  <option value="Resolved"> Resolved </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-2 col-xs-6"> 
+              <div class="form-group form-focus select-focus">
+                <label class="control-label">Priority</label>
+                <select class="select floating form-control" id="ticked_priority" name="ticked_priority"> 
+                  <option value=""> -- Select -- </option>
+                  <option value="Urgent"> Urgent </option>
+                  <option value="High"> High </option>
+                  <option value="Medium"> Medium </option>
+                  <option value="Low"> Low </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-2 col-xs-6">  
+              <div class="form-group form-focus">
+                <label class="control-label">From</label>
+                <div class="cal-icon"><input class="form-control floating datepicker-input" id="ticket_from" name="ticket_from" type="text"></div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-2 col-xs-6">  
+              <div class="form-group form-focus">
+                <label class="control-label">To</label>
+                <div class="cal-icon">
+                  <input class="form-control floating datepicker-input" id="ticket_to" name="ticket_to" type="text"></div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-2 col-xs-6">  
+              <a href="javascript:void(0)" id="ticket_search_btn" class="btn btn-success btn-block"> Search </a>  
+            </div>     
+                    </div>
+
               <div class="table-responsive">
                 <table id="table-tickets<?=($archive) ? '-archive':''?>" class="table table-striped custom-table m-b-0 AppendDataTables">
                   <thead>
@@ -69,6 +119,7 @@
 
                       <th class="col-lg-1"><?=lang('department')?></th>
                       <th class="col-lg-1"><?=lang('status')?></th>
+                      <th style="width:5px; display:none;"></th>
                       <th class="col-lg-1 text-right"><?=lang('action')?></th>
                     </tr>
                   </thead>
@@ -140,7 +191,9 @@
 
 
                       <td class="">
-                      <?php if(!empty($t->department)){echo App::get_dept_by_id($t->department);}else{echo '-';} ?>
+                      <?php 
+                      $department = App::get_dept_by_id($t->department);
+                      if(!empty($department)){echo $department;}else{echo '-';} ?>
                       </td>
 
                       <td>
@@ -165,6 +218,7 @@
                                     }
                                     ?>
                                     <span class="label label-<?=$s_label?>"><?=ucfirst(lang($status_lang))?></span> </td>
+                   <td style="display:none;"><?=date("m/d/Y",strtotime($t->created));?></td>                  
 									<td class="text-right">
 									
                         <div class="dropdown">
@@ -188,6 +242,8 @@
                           </ul>
                         </div>
 									</td>
+
+
 
                     </tr>
                     <?php } ?>

@@ -9,8 +9,61 @@
 			<?php } ?>
 		</div>
 	</div>
+
+	<div class="row filter-row">
+						<div class="col-sm-3 col-md-2 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label">Project Name</label>
+								<input type="text" class="form-control floating" id="expenes_project" name="expenes_project">
+							</div>
+						</div>
+						<div class="col-sm-3 col-md-2 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label">Client</label>
+								<input type="text" class="form-control floating" id="expenes_client" name="expenes_client">
+							</div>
+						</div>
+						<?php 
+							$categories = App::get_by_where('categories',array('module'=>'expenses'));
+
+						 ?>
+						<div class="col-sm-3 col-md-2 col-xs-6"> 
+							<div class="form-group form-focus select-focus">
+								<label class="control-label">Category</label>
+								<select class="form-control select floating" id="expenses_category" name="expenses_category"> 
+									<option value=""> -- Select -- </option>
+									<?php 
+										if(!empty($categories)){
+											foreach ($categories as $category) { ?>
+											<option value="<?php echo $category->cat_name; ?>"><?php echo $category->cat_name; ?></option>	
+											<?php }
+										}
+									 ?>
+									
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-3 col-md-2 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label">From</label>
+								<div class="cal-icon">
+									<input class="form-control floating datepicker-input" id="expenses_date_from" name="expenses_date_from" type="text"></div>
+							</div>
+						</div>
+						<div class="col-sm-3 col-md-2 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label">To</label>
+								<div class="cal-icon">
+									<input class="form-control floating datepicker-input" id="expenses_date_to" name="expenses_date_to" type="text"></div>
+							</div>
+						</div>
+						<div class="col-sm-3 col-md-2 col-xs-6">  
+							<a href="javascript:void(0)" class="btn btn-success btn-block" id="search_expenses_btn"> Search </a>  
+						</div>     
+                    </div>
+
 	<div class="table-responsive">
-		<table id="table-expenses" class="table table-striped custom-table m-b-0 AppendDataTables">
+		<table id="table-expenses" class="table table-striped custom-table m-b-0">
 			<thead>
 				<tr>
 					<th style="width:5px; display:none;"></th>
@@ -19,6 +72,7 @@
 					<th class=""><?=lang('client')?></th>
 					<th class=""><?=lang('invoiced')?></th>
 					<th class=""><?=lang('category')?></th>
+					<th style="width:5px; display:none;"></th>
 					<th class=""><?=lang('expense_date')?></th>
 					<th class="text-right">Action</th>
 				</tr>
@@ -63,6 +117,7 @@
 				<td>
 					<?php echo App::get_category_by_id($e->category); ?>
 				</td>
+				<th style="width:5px; display:none;"><?php echo date('m/d/Y',strtotime($e->expense_date)); ?></th>
 				<td>
 					<?=strftime(config_item('date_format'), strtotime($e->expense_date))?>
 				</td>

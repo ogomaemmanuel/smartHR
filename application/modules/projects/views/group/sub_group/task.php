@@ -51,9 +51,13 @@
 							<tr>
 								<td><?=lang('milestone')?>:</td>
 								<td class="text-right">
+									<?php $text_status = ($t->milestone) ? Project::view_milestone($t->milestone)->milestone_name : ''; 
+									if(!empty($text_status)){
+									?>
 									<a href="<?=base_url()?>projects/view/<?=$t->project?>/?group=milestones&view=milestone&id=<?=$t->milestone?>" class="text-primary">
 										<?php echo ($t->milestone) ? Project::view_milestone($t->milestone)->milestone_name : 'N/A'; ?>
 									</a>
+									<?php }else{echo '-';} ?>
 								</td>
 							</tr>
 							<tr>

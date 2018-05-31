@@ -28,6 +28,7 @@ class Tickets extends MX_Controller {
 		$data = array(
 			'page' => lang('tickets'),
 			'datatables' => TRUE,
+			'datepicker' => TRUE,
 			'archive' => $archive,
 			'tickets' => $this->_ticket_list($archive)
 		);

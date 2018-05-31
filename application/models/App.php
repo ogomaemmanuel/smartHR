@@ -108,7 +108,11 @@ class App extends CI_Model
 
 	// Get department name
 	static function get_dept_by_id($id){
-		return self::$db->where('deptid',$id)->get('departments')->row()->deptname;
+		if(self::$db->where('deptid',$id)->get('fx_departments')->num_rows() >0){
+			return self::$db->where('deptid',$id)->get('departments')->row()->deptname;
+		}else{
+			return '';
+		}
 	}
 
 	// Get a list of payment methods

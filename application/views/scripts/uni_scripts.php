@@ -144,6 +144,7 @@ if (isset($datatables)) {
             
 
             /* client search Hide end */
+            /* Project Data table start  */
             
              var tableprojects = $("#table-projects").DataTable(); //dataTable().fnSort([[0,'desc']]);
                
@@ -159,7 +160,225 @@ if (isset($datatables)) {
                 .search(  client_name )
                 .draw();
             });
-             $('#table-projects_filter').hide();
+            $('#table-projects_filter').hide();
+            /* Project Data table END  */
+            /* User Data Table Start */
+            
+            //$("#table-users").dataTable().fnSort([[4,'desc']]);
+             var tableusers = $("#table-users").DataTable();
+
+               $('#users_search_btn').click(function(){
+
+                var username = $('#username').val();
+                var company = $('#company').val();
+                var user_role = $('#user_role').val();
+
+                tableusers
+                .columns( 0 )
+                .search(  username )
+                .columns( 2 )
+                .search(  company )
+                .columns( 3 )
+                .search(  user_role )
+                .draw();
+            });
+            $('#table-users_filter').hide();
+
+            /* User Data Table End */
+            /* Ticked  Data Table Start  */
+            
+            //$("#table-tickets").dataTable().fnSort([[0,'desc']]);
+             var tabletickets = $("#table-tickets").DataTable();
+
+               $('#ticket_search_btn').click(function(){
+
+                var employee_name = $('#employee_name').val();
+                var ticket_status = $('#ticket_status').val();
+                var ticked_priority = $('#ticked_priority').val();
+                var ticket_from = $('#ticket_from').val();
+                var ticket_to = $('#ticket_to').val();
+
+                tabletickets
+                .columns(2 )
+                .search(  employee_name )
+                .columns( 6 )
+                .search(  ticket_status )
+                .columns( 4 )
+                .search(  ticked_priority )
+                .draw();
+                 if(ticket_from !='' && ticket_to!=''){
+
+                 tabletickets.draw();
+                    
+                 }
+            });
+
+               <?php if($this->uri->segment(1) == 'tickets'){ ?>
+             
+                $.fn.dataTable.ext.search.push(
+                function( settings, data, dataIndex ) {
+                var min  = $('#ticket_from').val();
+                var max  = $('#ticket_to').val();
+
+                var createdAt = data[7] || 0; // Our date column in the table
+
+                if  ( 
+                ( min == "" || max == "" )
+                || 
+                ( moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max) ) 
+                )
+                {
+                return true;
+                }
+                return false;
+                }
+                );
+            <?php }  ?>
+
+             $('#table-tickets_filter').hide();
+            /* Ticked  Data Table End */
+
+               /* Invoice  Data Table Start */
+            // $("#table-invoices").dataTable().fnSort([[0,'desc']]);
+            var tableinvoices = $("#table-invoices").DataTable();
+            $('#tableinvoices_btn').click(function(){
+
+                var invoices_status = $('#invoices_status').val();
+               
+                var ticket_from = $('#invoice_date_from').val();
+                var ticket_to = $('#invoice_date_to').val();
+
+                tableinvoices
+                .columns(2 )
+                .search(  invoices_status )
+                .draw();
+                 if(ticket_from !='' && ticket_to!=''){
+
+                 tableinvoices.draw();
+                    
+                 }
+            });
+               <?php if($this->uri->segment(1) == 'invoices'){ ?>
+               $.fn.dataTable.ext.search.push(
+                function( settings, data, dataIndex ) {
+                var min  = $('#invoice_date_from').val();
+                var max  = $('#invoice_date_to').val();
+
+                var createdAt = data[1] || 0; // Our date column in the table
+
+                if  ( 
+                ( min == "" || max == "" )
+                || 
+                ( moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max) ) 
+                )
+                {
+                return true;
+                }
+                return false;
+                }
+                );
+            <?php } ?>
+
+             $('#table-invoices_filter').hide();
+            /* Invoice  Data Table End */
+            /* Expenses  Data Table Start */
+            //$("#table-expenses").dataTable().fnSort([[0,'desc']]);
+             var tableexpenses = $("#table-expenses").DataTable();
+
+              $('#search_expenses_btn').click(function(){
+
+                var expenes_project = $('#expenes_project').val();
+                var expenes_client = $('#expenes_client').val();
+                var expenses_category = $('#expenses_category').val();
+               
+                var from = $('#expenses_date_from').val();
+                var to = $('#expenses_date_to').val();
+
+                tableexpenses
+                .columns(1 )
+                .search(  expenes_project )
+                .columns( 3 )
+                .search(  expenes_client )
+                .columns( 5 )
+                .search(  expenses_category )
+                .draw();
+                 if(from !='' && to!=''){
+
+                 tableexpenses.draw();
+                    
+                 }
+            });
+              
+              <?php if($this->uri->segment(1) == 'expenses'){ ?>
+               $.fn.dataTable.ext.search.push(
+                function( settings, data, dataIndex ) {
+                var min  = $('#expenses_date_from').val();
+                var max  = $('#expenses_date_to').val();
+
+                var createdAt = data[6] || 0; // Our date column in the table
+
+                if  ( 
+                ( min == "" || max == "" )
+                || 
+                ( moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max) ) 
+                )
+                {
+                return true;
+                }
+                return false;
+                }
+                );
+            <?php } ?>
+
+             $('#table-expenses_filter').hide();
+            /* Expenses  Data Table End */
+
+              /* estimates  Data Table Start */
+            // $("#table-estimates").dataTable().fnSort([[0,'desc']]);
+             var tableestimates = $("#table-estimates").DataTable();
+
+              $('#search_estimates_btn').click(function(){
+
+                var estimates_status = $('#estimates_status').val();
+                
+               
+                var from = $('#estimates_from').val();
+                var to = $('#estimates_to').val();
+
+                tableestimates
+                .columns( 4 )
+                .search(  estimates_status )
+                .draw();
+                 if(from !='' && to!=''){
+
+                 tableestimates.draw();
+                    
+                 }
+            });
+              
+              <?php if($this->uri->segment(1) == 'estimates'){ ?>
+               $.fn.dataTable.ext.search.push(
+                function( settings, data, dataIndex ) {
+                var min  = $('#estimates_from').val();
+                var max  = $('#estimates_to').val();
+
+                var createdAt = data[1] || 0; // Our date column in the table
+
+                if  ( 
+                ( min == "" || max == "" )
+                || 
+                ( moment(createdAt).isSameOrAfter(min) && moment(createdAt).isSameOrBefore(max) ) 
+                )
+                {
+                return true;
+                }
+                return false;
+                }
+                );
+            <?php } ?>
+
+             $('#table-estimates_filter').hide();
+            /* estimates  Data Table End */
 
             $("#table-client-details-1").dataTable().fnSort([[1,'asc']]);
             $("#table-client-details-2").dataTable().fnSort([[2,'desc']]);
@@ -167,15 +386,15 @@ if (isset($datatables)) {
             $("#table-client-details-4").dataTable().fnSort([[1,'asc']]);
             $("#table-templates-1").dataTable().fnSort([[0,'asc']]);
             $("#table-templates-2").dataTable().fnSort([[0,'asc']]);
-            $("#table-invoices").dataTable().fnSort([[0,'desc']]);
-            $("#table-estimates").dataTable().fnSort([[0,'desc']]);
+            
+            
             $("#table-payments").dataTable().fnSort([[0,'desc']]);
-            $("#table-users").dataTable().fnSort([[4,'desc']]);
+            
             $("#table-rates").dataTable().fnSort([[0,'asc']]);
             $("#table-bugs").dataTable().fnSort([[1,'desc']]);
             $("#table-stuff").dataTable().fnSort([[0,'asc']]);
             $("#table-activities").dataTable().fnSort([[0,'desc']]);
-            $("#table-expenses").dataTable().fnSort([[0,'desc']]);
+            
             $("#table-strings").DataTable().page.len(-1).draw();
             if ($('#table-strings').length == 1) { $('#table-strings_length, #table-strings_paginate').remove(); $('#table-strings_filter input').css('width','200px'); }
 
