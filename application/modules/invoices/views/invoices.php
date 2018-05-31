@@ -63,7 +63,7 @@
 								<label class="control-label">Status</label>
 								<select class="select floating form-control" id="invoices_status" name="invoices_status"> 
 									<option value="">All Invoices</option>
-									<option value="Paid">Paid</option>
+									<option value="Fully">Paid</option>
 									<option value="Not">Not Paid</option>
 									<option value="Partial">Partial</option>
 									<option value="Recurring">Recurring</option>
