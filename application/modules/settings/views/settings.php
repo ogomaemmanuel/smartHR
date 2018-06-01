@@ -1,9 +1,9 @@
 <div class="content">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-xs-3">
 							<h4 class="page-title m-b-30"><?=lang('settings')?></h4>
 						</div>
-                        <div class="col-sm-9 m-b-30 text-right">
+                        <div class="col-xs-9 m-b-30 text-right">
                             <?php if($load_setting == 'templates'){  ?>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-primary" title="Filter" data-toggle="dropdown"><i class="fa fa-cogs"></i> <?=lang('choose_template')?> <span class="caret"></span></button>
@@ -60,8 +60,8 @@
                         </div>
                     </div>
 				<div class="row">
-				<div class="col-sm-3">
-				<a class="btn btn-icon btn-default btn-sm pull-right visible-xs m-r-xs" data-toggle="class:show" data-target="#setting-nav"><i class="fa fa-reorder"></i></a>
+				<div class="col-sm-4 col-md-4 col-lg-3 col-xs-12">
+					<a class="btn btn-default visible-xs-inline-block m-r-xs m-b-20" data-toggle="class:show" data-target="#setting-nav"><i class="fa fa-reorder"></i></a>
 					<div id="setting-nav" class="card-box settings-menu hidden-xs">
 					<ul>
 					<?php                
@@ -77,7 +77,7 @@
 					</ul>
 				</div>
 				</div>
-				<div class="col-sm-9">
+				<div class="col-sm-8 col-md-8 col-lg-9 col-xs-12">
                     <!-- Load the settings form in views -->
                     <?=$this->load->view($load_setting)?>
                     <!-- End of settings Form -->

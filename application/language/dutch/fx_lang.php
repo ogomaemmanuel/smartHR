@@ -424,7 +424,6 @@ $lang['show'] = 'Tonen';
 $lang['subscribe_to_newsletter'] = 'Voer e-mailadres in...';
 $lang['subscribe'] = 'Inschrijven';
 $lang['system_settings'] = 'Systeem instellingen';
-$lang['system_users'] = 'Gebruikers';
 $lang['task_name'] = 'Taaknaam';
 $lang['tasks'] = 'Taken';
 $lang['task_add_success'] = 'Taak succesvol toegevoegd!';

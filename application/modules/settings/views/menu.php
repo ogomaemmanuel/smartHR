@@ -4,7 +4,7 @@
 	</div>
 	<div class="panel-body">
 		<ul class="nav nav-tabs nav-tabs-solid" role="tablist">
-			<li><a class="active" data-toggle="tab" href="#tab-admin"><?=lang('admin')?></a></li>
+			<li class="active"><a data-toggle="tab" href="#tab-admin"><?=lang('admin')?></a></li>
 			<li><a data-toggle="tab" href="#tab-staff"><?=lang('staff')?></a></li>
 			<li><a data-toggle="tab" href="#tab-client"><?=lang('client')?></a></li>
 		</ul>

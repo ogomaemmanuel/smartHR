@@ -2,10 +2,10 @@
 <div class="content">
 	<?php $est = Estimate::view_estimate($id); ?>
 	<div class="row">
-		<div class="col-xs-6">
+		<div class="col-xs-3">
 			<h4 class="page-title">Edit Estimate</h4>
 		</div>
-		<div class="col-xs-6 text-right m-b-30">
+		<div class="col-xs-9 text-right m-b-30">
 			<a href="<?=base_url()?>fopdf/estimate/<?=$est->est_id?>" class="btn btn-primary pull-right"><i class="fa fa-file-pdf-o"></i> <?=lang('pdf')?></a>
 			<a href="<?=base_url()?>estimates/view/<?=$est->est_id?>" data-original-title="<?=lang('view_details')?>" data-toggle="tooltip" data-placement="top" class="btn btn-success rounded">
 				<i class="fa fa-info-circle"></i> <?=lang('estimate_details')?>

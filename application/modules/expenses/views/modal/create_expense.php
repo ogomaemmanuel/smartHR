@@ -56,7 +56,9 @@
 							<?php } ?>
 						</select>
 					</div>
-					<a href="<?=base_url()?>settings/add_category" class="btn btn-success" data-toggle="ajaxModal" title="<?=lang('add_category')?>"><i class="fa fa-plus"></i> <?=lang('add_category')?></a>
+					<div class="col-lg-3">
+						<a href="<?=base_url()?>settings/add_category" class="btn btn-success" data-toggle="ajaxModal" title="<?=lang('add_category')?>"><i class="fa fa-plus"></i> <?=lang('add_category')?></a>
+					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-4 control-label"><?=lang('billable')?></label>

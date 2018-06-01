@@ -28,7 +28,9 @@
                                 <span></span>
                             </label>
                         </div>
-                        <span class="help-block m-b-0">Requires CRONs setup</span>
+						<div class="col-lg-4">
+							<span class="help-block m-b-0">Requires CRONs setup</span>
+						</div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-4 control-label"><?=lang('paypal_live')?></label>
@@ -123,14 +125,18 @@
                         <div class="col-lg-4">
                             <input type="text" class="form-control" value="<?=config_item('bitcoin_address')?>" name="bitcoin_address">
                         </div>
-						<span class="help-block m-b-0"><a href="https://blockchain.info/api/api_receive" target="_blank">Read More</a></span>
+						<div class="col-lg-4">
+							<span class="help-block m-b-0"><a href="https://blockchain.info/api/api_receive" target="_blank">Read More</a></span>
+						</div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-4 control-label">Blockchain API Key</label>
                         <div class="col-lg-4">
                             <input type="text" class="form-control" value="<?=config_item('bitcoin_api_key')?>" name="bitcoin_api_key">
                         </div>
-                        <span class="help-block m-b-0"><a href="https://api.blockchain.info/v2/apikey/request/" target="_blank">Read More</a></span>
+						<div class="col-lg-4">
+							<span class="help-block m-b-0"><a href="https://api.blockchain.info/v2/apikey/request/" target="_blank">Read More</a></span>
+						</div>
                     </div>
 					<div class="text-center m-t-30">
                         <button type="submit" class="btn btn-primary btn-lg"><?=lang('save_changes')?></button>

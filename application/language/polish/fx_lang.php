@@ -424,7 +424,6 @@ $lang['show'] = 'Pokaż';
 $lang['subscribe_to_newsletter'] = 'Wprowadź Email...';
 $lang['subscribe'] = 'Zapisz się';
 $lang['system_settings'] = 'Ustawienia systemu';
-$lang['system_users'] = 'Użytkownicy systemu';
 $lang['task_name'] = 'Nazwa zadania';
 $lang['tasks'] = 'Zadania';
 $lang['task_add_success'] = 'Zadanie dodane pomyślnie';

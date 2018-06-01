@@ -425,7 +425,6 @@ $lang['show'] = 'Pokaži';
 $lang['subscribe_to_newsletter'] = 'Unesite adresu...';
 $lang['subscribe'] = 'Upiši se';
 $lang['system_settings'] = 'Sistemske postavke';
-$lang['system_users'] = 'Sistemski korisnici';
 $lang['task_name'] = 'Naziv zadatka';
 $lang['tasks'] = 'Zadaci';
 $lang['task_add_success'] = 'Zadatak je uspješno dodan!';

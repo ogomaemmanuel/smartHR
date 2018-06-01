@@ -937,7 +937,7 @@ $('#admin_search_leave').on('click', function (e) {
 		var dfrom  = $('#ser_leave_date_from').val();
 		var dto    = $('#ser_leave_date_to').val();
 		var uname  = $.trim($('#ser_leave_user_name').val());
-  		$('#admin_leave_tbl').html('<tr> <td colspan="9"> <center style="padding-top:30px"> <img src="<?=base_url()?>assets/images/loader-mini.gif" alt="Loader Img" /></center></td> </tr>'); 
+  		$('#admin_leave_tbl').html('<tr> <td class="text-center" colspan="9"><img src="<?=base_url()?>assets/images/loader-mini.gif" alt="Loading"></td> </tr>'); 
 		$.ajax({
             url    : "<?=base_url()?>"+ scope + '/search_leaves/',
             type   : "POST", 
@@ -1512,7 +1512,7 @@ function get_year_holidays(year)
 
 	{ 	 if(year != "" || year != 0){   
 
-			 $('#holiday_tbl_body').html('<tr> <td colspan="5"> <center style="padding-top:30px"> <img src="<?=base_url()?>assets/images/loader-mini.gif" alt="Loader Img" /></center></td> </tr>'); 
+			 $('#holiday_tbl_body').html('<tr> <td class="text-center" colspan="5"><img src="<?=base_url()?>assets/images/loader-mini.gif" alt="Loading"></td> </tr>'); 
 
 			 $.ajax({
 

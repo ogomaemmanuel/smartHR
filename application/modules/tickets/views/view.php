@@ -74,7 +74,6 @@
 															<div class="row">
 		
 								                                <?php if($info->attachment != NULL){
-                                //echo '<div class="line line-dashed line-lg pull-in"></div>';
                                 $files = '';
                                 if (json_decode($info->attachment)) {
                                 $files = json_decode($info->attachment);
@@ -142,7 +141,6 @@ img { max-width: 100%; height: auto; }
 												
 												<ul class="attach-list">
                                                 <?php if($r->attachment != NULL){
-                                                //echo '<div class="line line-dashed line-lg pull-in"></div>';
                                                 $replyfiles = '';
                                                 if (json_decode($r->attachment)) {
                                                 $replyfiles = json_decode($r->attachment);

@@ -1,9 +1,9 @@
 <div class="content">
 	<div class="row">
-		<div class="col-sm-8">
+		<div class="col-sm-8 col-xs-4">
 			<h4 class="page-title"><?='Holidays of '.date('Y');?></h4>
 		</div>
-		<div class="col-sm-4 text-right m-b-30">
+		<div class="col-sm-4 col-xs-8 text-right m-b-30">
 			<?php if ($this->tank_auth->user_role($this->tank_auth->get_role_id()) == 'admin') { ?>
 			<a class="btn btn-primary rounded" href="<?=base_url()?>holidays/add"><i class="fa fa-plus"></i> <?='Add New Holiday';?></a>
 			<?php } ?>
@@ -78,7 +78,7 @@
 <script language="javascript">
 function get_year_holidays(year)
 { 	 if(year != "" || year != 0){   
-      $('#holiday_tbl_body').html('<tr> <td colspan="5"> <center style="padding-top:30px"> <img src="<?=base_url()?>assets/images/loader-mini.gif" alt="Loader Img" /></center></td> </tr>'); 
+      $('#holiday_tbl_body').html('<tr> <td class="text-center" colspan="5"><img src="<?=base_url()?>assets/images/loader-mini.gif" alt="Loading"></td> </tr>'); 
       $.ajax({
           url     : "<?=base_url()?>"+'holidays/year_holidays/',
           data    : { year : year,'<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>' },

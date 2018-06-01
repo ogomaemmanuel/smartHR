@@ -424,7 +424,6 @@ $lang['show'] = 'Göster';
 $lang['subscribe_to_newsletter'] = 'E-posta Gir...';
 $lang['subscribe'] = 'Abone';
 $lang['system_settings'] = 'Sistem Ayarları';
-$lang['system_users'] = 'Sistem Kullanıcıları';
 $lang['task_name'] = 'Görev Adı';
 $lang['tasks'] = 'Görevler';
 $lang['task_add_success'] = 'Görev başarıyla eklendi!';

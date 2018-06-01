@@ -425,7 +425,6 @@ $lang['show'] = 'Afişează';
 $lang['subscribe_to_newsletter'] = 'Introduce email...';
 $lang['subscribe'] = 'Abonează-te';
 $lang['system_settings'] = 'Setări de sistem';
-$lang['system_users'] = 'Utilizatori de sistem';
 $lang['task_name'] = 'Numele sarcinii';
 $lang['tasks'] = 'Sarcini';
 $lang['task_add_success'] = 'Sarcină adaugată cu succes';

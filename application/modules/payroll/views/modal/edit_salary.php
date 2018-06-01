@@ -1,4 +1,4 @@
-<div class="modal-dialog" style="width:50%">
+<div class="modal-dialog modal-lg">
 	<div class="modal-content">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">&times;</button> 
@@ -8,7 +8,7 @@
 			<?php $attributes = array('class' => 'form-horizontal'); echo form_open(base_url().'payroll/save_salary',$attributes); ?>
 				<div class="form-group">
 					<label class="col-md-3 control-label"> New Salary Amount</label>
-					<div class="col-md-4"> 
+					<div class="col-md-6"> 
 						<input type="hidden" name="salary_user_id" id="salary_user_id"  value="<?=$user_id?>"> 
 						<input type="text" name="user_salary_amount" id="user_salary_amount" class="form-control"  value="" required>
 					</div>

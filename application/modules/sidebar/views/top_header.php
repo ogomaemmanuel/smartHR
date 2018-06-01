@@ -3,7 +3,7 @@
 		<a class="logo" href="<?=base_url()?>">
 			<?php $display = config_item('logo_or_icon'); ?>
 		<?php if ($display == 'logo' || $display == 'logo_title') { ?>
-			<img src="<?=base_url()?>assets/images/<?=config_item('company_logo')?>" class="m-r-sm">
+			<img src="<?=base_url()?>assets/images/<?=config_item('company_logo')?>">
 		<?php } ?>
 		</a>
 	</div>
@@ -24,8 +24,8 @@
 				$lastseen = config_item('last_seen_activities');
 				$activities = $this->db->where('activity_date >',date("Y-m-d H:i:s",$lastseen))->get('activities')->result();
 				$act = count($activities);
-				$badge = 'bg-danger';
-				if ($act == 0) $badge = 'bg-success';
+				$badge = 'bg-purple';
+				if ($act == 0) $badge = 'bg-purple';
 			?>
 			 <span class="badge <?=$badge;?> pull-right"><?=$act;?></span>
 			<?php } ?><i class="fa fa-bell-o"></i>

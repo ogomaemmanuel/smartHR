@@ -60,8 +60,8 @@
 	<?php if (isset($datatables)) { ?>
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/plugins/dataTables.bootstrap.min.css" type="text/css"/>
 	<?php }  ?>
-	<link rel="stylesheet" href="<?=base_url()?>assets/css/custom.css" type="text/css" />
-	<link rel="stylesheet" href="<?=base_url()?>assets/css/style.css" type="text/css" />
+	<!--<link rel="stylesheet" href="<?=base_url()?>assets/css/custom.css" type="text/css" />
+	<link rel="stylesheet" href="<?=base_url()?>assets/css/style.css" type="text/css" />-->
 	<link rel="stylesheet" href="<?=base_url()?>assets/css/chat.css" type="text/css" />
 	<?php 
 	$family = 'Lato';
@@ -100,7 +100,7 @@
 	<script src="js/ie/excanvas.js">
 	</script> <![endif]-->
 </head>
-<body>
+<body class="theme-<?=config_item('top_bar_color')?>">
 	<div class="main-wrapper">
 		<!--header start-->
 		<?php  echo modules::run('sidebar/top_header');?>

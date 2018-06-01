@@ -1,9 +1,9 @@
 <div class="content">
 	<div class="row">
-		<div class="col-sm-8">
+		<div class="col-xs-5">
 			<h4 class="page-title"><?=lang('tax_rates')?></h4>
 		</div>
-		<div class="col-sm-4 text-right m-b-30">
+		<div class="col-xs-7 text-right m-b-30">
 			<a href="<?=base_url()?>invoices/tax_rates/add" data-toggle="ajaxModal" class="btn btn-primary btn-rounded pull-right"><i class="fa fa-plus"></i> <?=lang('new_tax_rate')?></a>
 		</div>
 	</div>

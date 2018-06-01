@@ -370,7 +370,7 @@ class Leaves extends MX_Controller {
         } 
 		if($html == ''){
  			$html = '<tr>
-			           <td colspan="9" align="center" style="padding-top:50px"> No Data Available </td>
+			           <td colspan="9" class="text-center"> No Data Available </td>
  			         </tr>';
  		}  
   		echo $html;  exit;

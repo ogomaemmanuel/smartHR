@@ -28,7 +28,7 @@ if ($total_sales > 0) {
                     <div class="sparkline inline" data-type="pie" data-height="150"
                          data-slice-colors="['#8EC165','#FFC333']">
                         <?= $perc_paid ?>,<?= $perc_outstanding ?></div>
-                    <div class="line pull-in"></div>
+                    <hr>
                     <div class="text-xs">
                         <i class="fa fa-circle text-warning"></i> <?= lang('outstanding') ?> - <?= $perc_outstanding ?>%
                         <i class="fa fa-circle text-success"></i> <?= lang('paid') ?> - <?= $perc_paid ?>%

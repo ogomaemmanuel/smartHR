@@ -1,9 +1,9 @@
 <div class="content">
 	<div class="row">
-		<div class="col-sm-5">
+		<div class="col-sm-5 col-xs-3">
 			<h4 class="page-title"><?=($archive ? lang('project_archive') : lang('projects'));?></h4>
 		</div>
-		<div class="col-sm-7 text-right m-b-30">
+		<div class="col-sm-7 col-xs-9 text-right m-b-30">
 			<?php if (User::is_admin() || User::perm_allowed(User::get_id(),'add_projects') || User::login_role_name() == 'client' && config_item('client_create_project') == 'TRUE') { ?>
 			<a href="<?=base_url()?>projects/add" class="btn btn-primary rounded pull-right"><i class="fa fa-plus"></i> <?=lang('create_project')?></a>
 			<?php } ?>

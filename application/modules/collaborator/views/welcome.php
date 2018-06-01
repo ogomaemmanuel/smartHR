@@ -223,9 +223,9 @@
 										if (lang($activity->activity) != '') {
 											if (!empty($activity->value1)) {
 												if (!empty($activity->value2)) {
-													echo sprintf(lang($activity->activity), '<em>' . $activity->value1 . '</em>', '<em>' . $activity->value2 . '</em>');
+													echo sprintf(lang($activity->activity), '<a href="javascript:void(0);">' . $activity->value1 . '</a>', '<a href="javascript:void(0);">' . $activity->value2 . '</a>');
 												} else {
-													echo sprintf(lang($activity->activity), '<em>' . $activity->value1 . '</em>');
+													echo sprintf(lang($activity->activity), '<a href="javascript:void(0);">' . $activity->value1 . '</a>');
 												}
 											} else {
 												echo lang($activity->activity);

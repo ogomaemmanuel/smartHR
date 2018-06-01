@@ -119,7 +119,7 @@ class Holidays extends MX_Controller {
 	      $i++; }    	  
  		  if($html == ''){
 			  $html   = '<tr>
-							<td colspan="5"> <center style="padding-top:30px"> No Data Available </center></td>
+							<td class="text-center" colspan="5">No Data Available</td>
 						 </tr>';
 		  } 
  		  echo $html;

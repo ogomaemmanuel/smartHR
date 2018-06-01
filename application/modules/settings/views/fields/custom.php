@@ -25,9 +25,8 @@
 						</div>
                     </div>
 					<div class="row">
-						<div class="col-sm-3">
-							
-								<a class="btn btn-icon btn-default btn-sm pull-right visible-xs m-r-xs" data-toggle="class:show" data-target="#setting-nav"><i class="fa fa-reorder"></i></a>
+						<div class="col-sm-4 col-md-4 col-lg-3 col-xs-12">
+							<a class="btn btn-default visible-xs-inline-block m-b-20" data-toggle="class:show" data-target="#setting-nav"><i class="fa fa-reorder"></i></a>
                         <div id="setting-nav" class="card-box settings-menu hidden-xs">
                             <ul class="nav nav-pills nav-stacked no-radius">
                             <?php
@@ -43,7 +42,7 @@
                             </ul>
                         </div>
 						</div>
-						<div class="col-sm-9">
+						<div class="col-sm-8 col-md-8 col-lg-9 col-xs-12">
                     <?php
             		$attributes = array('id' => 'saveform');
             		echo form_open(base_url() . 'settings/fields/saveform', $attributes);

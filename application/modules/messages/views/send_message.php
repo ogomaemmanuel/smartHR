@@ -5,10 +5,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-sm-4 col-md-4 col-lg-3 col-xs-12">
 			<div class="card-box">
 				<div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333">
-					<section id="setting-nav" class="hidden-xs">
+					<div>
 						<ul class="mail-menu">
 							<li class="<?php echo ($group == 'inbox') ? 'active' : '';?>">
 								<a href="<?=base_url()?>messages?group=inbox"> <i class="fa fa-fw fa-envelope"></i>
@@ -31,21 +31,21 @@
 								</a>
 							</li>
 						</ul>
-					</section>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-9">
+		<div class="col-sm-8 col-md-8 col-lg-9 col-xs-12">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card-box">
 						<div class="email-header">
 							<div class="row">
-								<div class="col-xs-6 pull-right top-action-left">
+								<div class="col-xs-12 col-sm-6 pull-right top-action-left">
 									<?php echo form_open(base_url().'messages/search/'); ?>
 										<div class="input-group">
-											<input type="text" class="input-sm form-control" name="keyword" placeholder="<?=lang('keyword')?>">
-												<span class="input-group-btn"> <button class="btn btn-sm btn-default" type="submit">Go!</button>
+											<input type="text" class="form-control" name="keyword" placeholder="<?=lang('keyword')?>">
+												<span class="input-group-btn"> <button class="btn btn-md btn-default" type="submit">Go!</button>
 												</span>
 										</div>
 									</form>

@@ -7,10 +7,10 @@
 <div class="header-fixed clearfix">
 	<div class="row">
 		<div class="col-sm-12">
-			<div class="col-xs-6">
+			<div class="col-xs-3 col-sm-4">
 				<h3 class="page-title m-b-0"><?=$p->project_title; ?></h3>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-9 col-sm-8">
 				<div class="btn-group pull-right">
 					<?php if ($role != '2'):
 					$timer_status = Project::timer_status('project', $p->project_id);

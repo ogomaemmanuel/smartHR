@@ -424,7 +424,6 @@ $lang['show'] = 'Mostrat';
 $lang['subscribe_to_newsletter'] = 'Ingrese Email...';
 $lang['subscribe'] = 'Suscribir';
 $lang['system_settings'] = 'Configuración del sistema';
-$lang['system_users'] = 'Usuarios del sistema';
 $lang['task_name'] = 'Nombre de la tarea';
 $lang['tasks'] = 'Tareas';
 $lang['task_add_success'] = 'Tarea agregada con éxito';

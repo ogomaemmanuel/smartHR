@@ -424,7 +424,6 @@ $lang['show'] = 'Vis';
 $lang['subscribe_to_newsletter'] = 'Skriv inn e-post...';
 $lang['subscribe'] = 'Abonner';
 $lang['system_settings'] = 'System';
-$lang['system_users'] = 'Systembrukere';
 $lang['task_name'] = 'Navn';
 $lang['tasks'] = 'Oppgaver';
 $lang['task_add_success'] = 'Oppgave opprettet!';

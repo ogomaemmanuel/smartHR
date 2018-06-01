@@ -424,7 +424,6 @@ $lang['show'] = 'Mostra';
 $lang['subscribe_to_newsletter'] = 'Inserisci Email...';
 $lang['subscribe'] = 'Sottoscrivi';
 $lang['system_settings'] = 'Preferenze sistema';
-$lang['system_users'] = 'Utenti del Sistema';
 $lang['task_name'] = 'Nome Incarico';
 $lang['tasks'] = 'Incarico';
 $lang['task_add_success'] = 'Incarico aggiunto con successo!';

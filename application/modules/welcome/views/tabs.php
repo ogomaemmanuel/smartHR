@@ -9,7 +9,7 @@
 	<section class="scrollable">
 		<div class="tab-content">
 			<div class="tab-pane active" id="projects">
-				<table class="table table-striped custom-table m-b-0 text-sm clickable">
+				<table class="table table-striped custom-table m-b-0 clickable">
 					<thead>
 						<tr>
 							<th><?= lang('project_name') ?> </th>

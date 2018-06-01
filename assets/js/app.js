@@ -783,8 +783,17 @@ $(document).ready(function($) {
         if (menuOffsetHeight > tableOffsetHeight)
             $table.css("padding-bottom", menuOffsetHeight - tableOffsetHeight);
     });
+	
     $('.table-responsive').on('hide.bs.dropdown', function() {
         $(this).css("padding-bottom", 0);
     });
+	
+	$('a[data-toggle="modal"]').on('click',function(){
+		setTimeout(function(){ if($(".modal.custom-modal").hasClass('in')){ 
+		$(".modal-backdrop").addClass('custom-backdrop');
+		$("body").addClass('custom-modal-open');
+		
+		} },500);
+	});
 	
 });

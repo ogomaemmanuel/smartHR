@@ -424,7 +424,6 @@ $lang['show'] = '显示';
 $lang['subscribe_to_newsletter'] = '输入邮箱...';
 $lang['subscribe'] = '预定';
 $lang['system_settings'] = '系统设定';
-$lang['system_users'] = '系统用户';
 $lang['task_name'] = '任务名';
 $lang['tasks'] = '任务';
 $lang['task_add_success'] = '添加任务成功！';

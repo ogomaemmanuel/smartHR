@@ -1,9 +1,9 @@
 <div class="content">
 	<div class="row">
-		<div class="col-xs-6">
+		<div class="col-xs-3">
 			<h4 class="page-title">Edit Invoice</h4>
 		</div>
-		<div class="col-xs-6 text-right m-b-30">
+		<div class="col-xs-9 text-right m-b-30">
 			<?php $i = Invoice::view_by_id($id); ?>
 				<a href="<?=base_url()?>invoices/view/<?=$i->inv_id?>" data-original-title="<?=lang('view_details')?>" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary rounded pull-right"><i class="fa fa-info-circle"></i> <?=lang('invoice_details')?></a>
 		</div>

@@ -3,7 +3,7 @@
     <aside>
       <section class="vbox">
         <section class="scrollable padder">
-            <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+            <ul class="breadcrumb">
     <li><a href="<?=base_url()?>"><i class="fa fa-home"></i> <?=lang('home')?></a></li>
     <li class="active"><?=lang('updates')?></li>
             </ul>

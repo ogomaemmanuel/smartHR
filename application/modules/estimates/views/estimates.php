@@ -1,9 +1,9 @@
 <div class="content">
 	<div class="row">
-		<div class="col-sm-8">
+		<div class="col-sm-4 col-xs-3">
 			<h4 class="page-title"><?=lang('estimates')?></h4>
 		</div>
-		<div class="col-sm-4 text-right m-b-30">
+		<div class="col-sm-8 col-xs-9 text-right m-b-30">
 			<?php
 			if(User::is_admin() || User::perm_allowed(User::get_id(),'add_estimates')) { ?> 
 			<a href="<?=base_url()?>estimates/add" class="btn btn-primary rounded pull-right"><i class="fa fa-plus"></i> <?=lang('create_estimate')?></a>

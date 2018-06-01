@@ -1,9 +1,9 @@
 <div class="content">
 	<div class="row">
-		<div class="col-sm-8 col-xs-6">
+		<div class="col-sm-8 col-xs-3">
 			<h4 class="page-title"><?=lang('calendar')?></h4>
 		</div>
-		<div class="col-sm-4 col-xs-6 text-right m-b-30">
+		<div class="col-sm-4 col-xs-9 text-right m-b-30">
 			<?php if(User::is_admin()) : ?>
 			<a href="<?=base_url()?>calendar/settings" data-toggle="ajaxModal" class="btn btn-primary rounded pull-right"><i class="fa fa-cog"></i> <?=lang('calendar_settings')?></a>
 			<?php endif; ?>

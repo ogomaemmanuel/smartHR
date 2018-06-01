@@ -425,7 +425,6 @@ $lang['show'] = 'Προβολή';
 $lang['subscribe_to_newsletter'] = 'Εισάγετε Email...';
 $lang['subscribe'] = 'Εγγραφή';
 $lang['system_settings'] = 'Ρυθμίσεις Συστήματος';
-$lang['system_users'] = 'Χρήστες Συστήματος';
 $lang['task_name'] = 'Όνομα Εργασίας';
 $lang['tasks'] = 'Εργασίες';
 $lang['task_add_success'] = 'Η εργασία προστέθηκε με επιτυχία';

@@ -29,9 +29,11 @@
 								</select>
 							</div>
 							<?php if(User::is_admin()) : ?>
-							<a href="<?=base_url()?>companies/create" class="btn btn-primary" data-toggle="ajaxModal" title="<?=lang('new_company')?>" data-placement="bottom">
-								<i class="fa fa-plus"></i> <?=lang('new_client')?>
-							</a>
+							<div class="col-lg-5">
+								<a href="<?=base_url()?>companies/create" class="btn btn-primary" data-toggle="ajaxModal" title="<?=lang('new_company')?>" data-placement="bottom">
+									<i class="fa fa-plus"></i> <?=lang('new_client')?>
+								</a>
+							</div>
 							<?php endif; ?>
 						</div>
 						<div class="form-group">

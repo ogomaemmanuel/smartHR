@@ -35,9 +35,11 @@
 									</optgroup>
 								</select>
 							</div>
-							<a href="<?=base_url()?>companies/create" class="btn btn-primary" data-toggle="ajaxModal" title="<?=lang('new_company')?>" data-placement="bottom">
-								<i class="fa fa-plus"></i> <?=lang('new_client')?>
-							</a>
+							<div class="col-lg-5">
+								<a href="<?=base_url()?>companies/create" class="btn btn-primary" data-toggle="ajaxModal" title="<?=lang('new_company')?>" data-placement="bottom">
+									<i class="fa fa-plus"></i> <?=lang('new_client')?>
+								</a>
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-3 control-label"><?=lang('due_date')?></label>

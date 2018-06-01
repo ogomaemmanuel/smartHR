@@ -1,9 +1,9 @@
 <div class="content">
 	<div class="row">
-		<div class="col-sm-8">
+		<div class="col-sm-8 col-xs-3">
 			<h4 class="page-title">Leaves</h4>
 		</div>
-		<div class="col-sm-4 text-right m-b-30">
+		<div class="col-sm-4 col-xs-9 text-right m-b-30">
 			<?php if ($this->tank_auth->user_role($this->tank_auth->get_role_id()) != 'admin') { ?>
 			<a href="javascript:;" class="btn btn-primary rounded pull-right" onclick="$('.new_leave_reqst').show();$('#date_alert_msg').hide();"><i class="fa fa-plus"></i> <?='New Leave Request';?></a>
 			<?php } ?>
@@ -55,7 +55,7 @@
 					<input type="text" class="form-control floating" id="ser_leave_user_name" name="ser_leave_user_name" value="">
 				</div>
 			</div>
-			<div class="col-sm-8 col-md-8 col-xs-12 col-lg-4">
+			<div class="col-sm-8 col-md-8 col-xs-12 col-lg-4 search_date">
 				<div class="row">
 					<div class="col-sm-5 col-md-5 col-xs-5">
 						<div class="form-group form-focus">
@@ -66,7 +66,7 @@
 						</div>
 					</div>
 					<div class="col-sm-1 col-md-1 col-xs-1"> 
-						<i class="fa fa-refresh" style="cursor:pointer; margin-top:15px; font-size:18px" title="Clear From Date" onclick="$('#ser_leave_date_from').val('');"></i>
+						<i class="fa fa-refresh" title="Clear From Date" onclick="$('#ser_leave_date_from').val('');"></i>
 					</div>
 					<div class="col-sm-5 col-md-5 col-xs-5">
 						<div class="form-group form-focus">
@@ -77,7 +77,7 @@
 						</div>
 					</div>
 					<div class="col-sm-1 col-md-1 col-xs-1"> 
-						<i class="fa fa-refresh" style="cursor:pointer; margin-top:15px; font-size:18px" title="Clear To Date" onclick="$('#ser_leave_date_to').val('');"></i>
+						<i class="fa fa-refresh" title="Clear To Date" onclick="$('#ser_leave_date_to').val('');"></i>
 				   </div>
 				</div>
 			</div>
@@ -163,7 +163,7 @@
 					</tr>
 				 <?php  } ?>  
 				 <?php  }else{ ?>
-						 <tr><td colspan="9">No details were found</td></tr>
+						 <tr><td class="text-center" colspan="9">No details were found</td></tr>
 						 <?php } ?>  
 				</tbody>
 		   </table>    

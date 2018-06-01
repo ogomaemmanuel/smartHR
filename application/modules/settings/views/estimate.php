@@ -57,7 +57,9 @@
 								<span></span>
 							</label>
 						</div>
-						<span class="help-block m-b-0">Convert accepted estimate to project</span>
+						<div class="col-lg-6">
+							<span class="help-block m-b-0">Convert accepted estimate to project</span>
+						</div>
 					</div>
 					<div class="form-group terms">
 						<label class="col-lg-3 control-label"><?=lang('estimate_footer')?></label>

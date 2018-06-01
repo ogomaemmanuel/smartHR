@@ -1,6 +1,6 @@
 <div class="content">  
 	<div class="row">
-		<div class="col-xs-4">
+		<div class="col-xs-12">
 			<h4 class="page-title"><?='Pay Slip';?></h4>
 		</div>
 	</div>

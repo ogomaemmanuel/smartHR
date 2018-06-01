@@ -425,7 +425,6 @@ $lang['show'] = 'Zobrazit';
 $lang['subscribe_to_newsletter'] = 'Zadejte E-mail...';
 $lang['subscribe'] = 'Odebírat';
 $lang['system_settings'] = 'Nastavení systému';
-$lang['system_users'] = 'Uživatelé systému';
 $lang['task_name'] = 'Název úkolu';
 $lang['tasks'] = 'Úkoly';
 $lang['task_add_success'] = 'Úkol byl úspěšně přidán';

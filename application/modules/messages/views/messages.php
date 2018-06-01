@@ -5,7 +5,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-sm-4 col-md-4 col-lg-3 col-xs-12">
 			<div class="card-box">
 				<a class="btn btn-primary btn-block m-b-20" href="<?=base_url()?>messages/send/?group=sent" title="<?=lang('send_message')?>" data-placement="top">
 					<i class="fa fa-envelope"></i> <?=lang('send_message')?>
@@ -36,17 +36,17 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-9">
+		<div class="col-sm-8 col-md-8 col-lg-9 col-xs-12">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card-box">
 						<div class="email-header">
 							<div class="row">
-								<div class="col-xs-6 pull-right top-action-left">
+								<div class="col-xs-12 col-sm-6 pull-right top-action-left">
 									<?php echo form_open(base_url().'messages/search/'); ?>
 										<div class="input-group">
-											<input type="text" class="input-sm form-control" name="keyword" placeholder="<?=lang('keyword')?>">
-											<span class="input-group-btn"> <button class="btn btn-sm btn-success" type="submit">Go!</button>
+											<input type="text" class="form-control" name="keyword" placeholder="<?=lang('keyword')?>">
+											<span class="input-group-btn"> <button class="btn btn-md btn-default" type="submit">Go!</button>
 										</span>
 										</div>
 									</form>
