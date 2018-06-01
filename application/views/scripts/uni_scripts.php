@@ -184,6 +184,28 @@ if (isset($datatables)) {
             });
             $('#table-users_filter').hide();
 
+             var tableemployee = $("#table-employee").DataTable();
+
+               $('#employee_search_btn').click(function(){
+
+                var employee_id = $('#employee_id').val();
+                var employee_email = $('#employee_email').val();
+                var username = $('#username').val();
+                var company = $('#company').val();
+
+                tableemployee
+                .columns( 0 )
+                .search(  username )
+                .columns( 1 )
+                .search(  company )
+                .columns( 2 )
+                .search(  employee_id )
+                .columns( 3 )
+                .search(  employee_email )
+                .draw();
+            });
+            $('#table-employee_filter').hide();
+
             /* User Data Table End */
             /* Ticked  Data Table Start  */
             

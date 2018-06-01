@@ -11,6 +11,7 @@ class Holidays extends MX_Controller {
             $this->session->set_flashdata('message', lang('access_denied'));
             redirect('');
         }*/
+          App::module_access('menu_holidays');
         $this->load->helper(array('inflector'));
         $this->applib->set_locale();
     }

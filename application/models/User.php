@@ -78,6 +78,11 @@ class User extends CI_Model
     static function all_users(){
         return self::$db->get('users')->result();
     }
+    // Get all Staff users
+    static function all_staffs_users(){
+            
+        return self::$db->where('role_id',3)->get('users')->result();
+    }
 
     /**
      * Display username or full name if exists
