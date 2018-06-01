@@ -45,8 +45,40 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="row filter-row">
+						<div class="col-sm-3 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label">Project Title</label>
+						<input type="text" class="form-control floating" id="project_title" name="project_title">
+							</div>
+						</div>
+						<div class="col-sm-3 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label">Client Name</label>
+								<input type="text" class="form-control floating"  id="client_name" name="client_name">
+							</div>
+						</div> 
+						<!-- <div class="col-sm-3 col-xs-6"> 
+							<div class="form-group form-focus select-focus">
+								<label class="control-label">Role</label>
+								<select class="select floating select2-hidden-accessible" tabindex="-1" aria-hidden="true"> 
+									<option value="">Select Roll</option>
+									<option value="">Web Developer</option>
+									<option value="1">Web Designer</option>
+									<option value="1">Android Developer</option>
+									<option value="1">Ios Developer</option>
+								</select><span class="select2 select2-container select2-container--default select2-container--below select2-container--open select2-container--focus" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="true" tabindex="0" aria-labelledby="select2-t6kx-container" aria-owns="select2-t6kx-results"><span class="select2-selection__rendered" id="select2-t6kx-container" title="Select Roll">Select Roll</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+							</div>
+						</div> -->
+						<div class="col-sm-3 col-xs-6">  
+							<a href="javascript:void(0)" id="project_search_btn" class="btn btn-success btn-block"> Search </a>  
+						</div>     
+                    </div>
+
+
 	<div class="table-responsive">
-		<table id="table-projects<?=($archive ? '-archive':'')?>" class="table table-striped custom-table m-b-0 AppendDataTables">
+		<table id="table-projects<?=($archive ? '-archive':'')?>" class="table table-striped custom-table m-b-0">
 			<thead>
 				<tr>
 					<th style="width:5px; display:none;"></th>

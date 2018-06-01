@@ -7,6 +7,46 @@
 			<a href="javascript:void(0)" class="btn btn-primary pull-right rounded" data-toggle="modal" data-target="#add_new_user"><i class="fa fa-plus"></i> <?=lang('new_user')?></a>
 		</div>
 	</div>				
+					<div class="row filter-row">
+						<div class="col-sm-3 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label">User Name</label>
+								<input type="text" class="form-control floating" id="username" name="username">
+							</div>
+						</div>
+						
+						<div class="col-sm-3 col-xs-6"> 
+							<div class="form-group form-focus select-focus">
+								<label class="control-label">Company</label>
+								<select class="select floating form-control" id="company" name="company"> 
+									<option value="">Select Company</option>
+									<?php if(!empty($companies)){ ?>
+									<?php foreach ($companies as $company) { ?>
+										<option value="<?php echo $company->company_name; ?>"><?php echo $company->company_name; ?></option>
+									<?php  } ?>
+									<?php } ?>
+								</select>
+							</div>
+						</div>
+						
+						<div class="col-sm-3 col-xs-6"> 
+							<div class="form-group form-focus select-focus">
+								<label class="control-label">Role</label>
+								<select class="select floating form-control" id="user_role" name="user_role"> 
+									<option value="">Select Roll</option>
+									<option value="Admin">Admin</option>
+									<option value="Client">Client</option>
+									<option value="Staff">Staff</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-sm-3 col-xs-6">  
+							<a href="javascript:void(0)" id="users_search_btn" class="btn btn-success btn-block"> Search </a>  
+						</div>  
+						   
+                    </div>
+
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="table-responsive">

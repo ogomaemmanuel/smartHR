@@ -9,10 +9,41 @@
 			</a>
 		</div>
 	</div>
+
+	<div class="row filter-row">
+						<div class="col-sm-3 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label">Client</label>
+								<input type="text" id="client_name" name="client_name" class="form-control floating">
+							</div>
+						</div>
+						<div class="col-sm-3 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label" >Email</label>
+								<input type="text" id="client_email" name="client_email" class="form-control floating">
+							</div>
+						</div>
+					<!-- 	<div class="col-sm-3 col-xs-6"> 
+							<div class="form-group form-focus select-focus">
+								<label class="control-label">Role</label>
+								<select class="select floating select2-hidden-accessible" tabindex="-1" aria-hidden="true"> 
+									<option value="">Select Roll</option>
+									<option value="">Web Developer</option>
+									<option value="1">Web Designer</option>
+									<option value="1">Android Developer</option>
+									<option value="1">Ios Developer</option>
+								</select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-io4z-container"><span class="select2-selection__rendered" id="select2-io4z-container" title="Select Roll">Select Roll</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+							</div>
+						</div> -->
+						<div class="col-sm-3 col-xs-6">  
+							<a href="javascript:void(0)" id="client_search" class="btn btn-success btn-block"> Search </a>  
+						</div>     
+                    </div>
+
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="table-responsive">
-				<table id="table-clients" class="table table-striped custom-table m-b-0 AppendDataTables">
+				<table id="table-clients-compaines" class="table table-striped custom-table m-b-0">
 					<thead>
 						<tr>
 							<th><?=lang('client')?> </th>

@@ -42,10 +42,45 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="row filter-row">
+						<div class="col-sm-3 col-xs-6">  
+							<div class="form-group form-focus focused">
+								<label class="control-label">From</label>
+								<div class="cal-icon">
+									<input class="form-control floating datepicker-input" id="invoice_date_from" type="text"></div>
+							</div>
+						</div>
+						<div class="col-sm-3 col-xs-6">  
+							<div class="form-group form-focus">
+								<label class="control-label">To</label>
+								<div class="cal-icon">
+									<input class="form-control floating datepicker-input" id="invoice_date_to" type="text"></div>
+							</div>
+						</div>
+						<div class="col-sm-3 col-xs-6"> 
+							<div class="form-group form-focus select-focus">
+								<label class="control-label">Status</label>
+								<select class="select floating form-control" id="invoices_status" name="invoices_status"> 
+									<option value="">All Invoices</option>
+									<option value="Fully">Paid</option>
+									<option value="Not">Not Paid</option>
+									<option value="Partial">Partial</option>
+									<option value="Recurring">Recurring</option>
+								</select> 
+							</div>
+						</div>
+						<div class="col-sm-3 col-xs-6">  
+							<a href="javascript:void(0)" class="btn btn-success btn-block" id="tableinvoices_btn"> Search </a>  
+						</div>     
+                    </div>
+
 	<div class="table-responsive">
-		<table id="table-invoices" class="table table-striped custom-table m-b-0 AppendDataTables">
+		<table id="table-invoices" class="table table-striped custom-table m-b-0">
 			<thead>
 				<tr>
+					<th style="width:5px; display:none;"></th>
+					<th style="width:5px; display:none;"></th>
 					<th style="width:5px; display:none;"></th>
 					<th class=""><?=lang('invoice')?></th>
 					<th class=""><?=lang('client_name')?></th>
@@ -69,11 +104,14 @@
 				?>
 				<tr class="<?=($inv->status == 'Cancelled') ? 'text-danger' : '';?>">
 					<td style="display:none;"><?=$inv->inv_id?></td>
-					<td>
-						<a class="text-info" href="<?=base_url()?>invoices/view/<?=$inv->inv_id?>">
+					<td style="display:none;"><?php echo date('m/d/Y',strtotime($inv->due_date)); ?></td>
+					<td style="display:none;"><?php
+						$status1 = explode('_', $status);
+						$status1 = current($status1);
+					 echo ucfirst($status1); ?></td>
+					<td><a class="text-info" href="<?=base_url()?>invoices/view/<?=$inv->inv_id?>">
 							<?=$inv->reference_no?>
-						</a>
-					</td>
+						</a></td>
 					<td>
 						<?php echo Client::view_by_id($inv->client)->company_name; ?>
 					</td>

@@ -22,6 +22,7 @@ class Account extends MX_Controller {
 	$data['page'] = lang('users');
 	$data['datatables'] = TRUE;
 	$data['form'] = TRUE;
+	$data['companies'] = Client::get_all_clients();
 	$this->template
 	->set_layout('users')
 	->build('users',isset($data) ? $data : NULL);

@@ -33,6 +33,7 @@ class Invoices extends MX_Controller
         $this->template->title(lang('invoices').' - '.config_item('company_name'));
         $data['page'] = lang('invoices');
         $data['datatables'] = true;
+        $data['datepicker'] = true;
         $data['invoices'] = $this->_show_invoices();
         $this->template
     ->set_layout('users')
