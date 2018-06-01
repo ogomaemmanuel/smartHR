@@ -62,7 +62,8 @@ if ( ! function_exists('lang'))
 	 * @return	string
 	 */
 	function lang($line, $for = '', $attributes = array())
-	{
+	{	
+
 		$line = get_instance()->lang->line($line);
 
 		if ($for !== '')
@@ -70,6 +71,6 @@ if ( ! function_exists('lang'))
 			$line = '<label for="'.$for.'"'._stringify_attributes($attributes).'>'.$line.'</label>';
 		}
 
-		return $line;
+		return $line; 
 	}
 }

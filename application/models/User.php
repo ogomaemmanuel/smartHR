@@ -71,11 +71,12 @@ class User extends CI_Model
      */
 
     static function team() {
-        return self::$db->where('role_id !=',2) -> get('users')->result();
+        return self::$db->where(array('role_id !='=>2,'role_id !='=>1)) -> get('users')->result();
     }
 
     // Get all users
     static function all_users(){
+            self::$db->where('role_id !=',3);
         return self::$db->get('users')->result();
     }
     // Get all Staff users
@@ -247,6 +248,10 @@ class User extends CI_Model
         }else{
             return FALSE;
         }
+    }
+
+    static function all_projects(){
+        return self::$db->get('projects')->result();
     }
 
     static function can_add_project(){
