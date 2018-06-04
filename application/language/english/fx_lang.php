@@ -1399,6 +1399,13 @@ $lang['leaves'] = 'Leaves';
 $lang['payroll'] = 'Payroll';
 $lang['rules'] = 'Rules & Regulations';
 $lang['chats'] = 'Chats';
+$lang['employees'] = 'Employees';
+$lang['all employees'] = 'All Employees';
+$lang['system_employee'] = 'System Employees';
+$lang['employee_id'] = 'Employee ID';
+$lang['join_date'] = 'Join Date';
+$lang['assign_staff']  = 'Assign Staff';
+$lang['assign_project'] = 'Assign Project';
 
 if(file_exists(APPPATH.'/language/english/custom_language.php')){
 	include APPPATH.'/language/english/custom_language.php';

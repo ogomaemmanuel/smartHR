@@ -30,14 +30,18 @@
 				if($open_tickets > 0){ $badge['menu_tickets'] = '<b class="badge bg-primary pull-right">'.$open_tickets.'</b>'; }
 
 				$menus = $this->db->where('access',1)->where('visible',1)->where('parent','')->where('hook','main_menu_admin')->order_by('order','ASC')->get('hooks')->result();
+				
 				foreach ($menus as $menu) {
 					$sub = $this->db->where('access',1)->where('visible',1)->where('parent',$menu->module)->where('hook','main_menu_admin')->order_by('order','ASC')->get('hooks');
 				?>
 				<?php if ($sub->num_rows() > 0) {
-				$submenus = $sub->result(); ?>
+				$submenus = $sub->result(); 
+
+				?>
 				<li class="<?php
 					foreach ($submenus as $submenu) {
-						if($page == lang($submenu->name)){echo  "active"; }
+
+						if(strtolower($page) == strtolower(lang($submenu->name))){echo  "active"; }
 					}
 				?>">
 					<a href="<?=base_url()?><?=$menu->route?>">

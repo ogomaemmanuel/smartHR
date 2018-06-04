@@ -25,10 +25,36 @@ $company_ref = config_item('company_id_prefix').$this->applib->generate_string()
 							<label><?=lang('company_name')?> / <?=lang('full_name')?><span class="text-danger">*</span></label>
 							<input type="text" name="company_name" value="" class="form-control" required>
 						</div>
+
 						<div class="form-group">
 							<label><?=lang('lead_value')?> <span class="text-danger">*</span> (e.g 500.00)</label>
 							<input type="text" name="transaction_value" value="0.00" class="form-control" required>
 						</div>
+
+							<div class="form-group">
+							<label><?=lang('assigned_to')?> <span class="text-danger">*</span></label>
+							<!-- Build your select: -->
+							<select class="select2-option form-control"   required style="width:100%;" name="assign_to" > 
+								<optgroup label="<?=lang('admin_staff')?>"> 
+								<?php foreach (User::team() as $key => $user) { ?>
+								<option value="<?=$user->id?>"><?=ucfirst(User::displayName($user->id))?></option>
+								<?php } ?>	
+								</optgroup> 
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label><?=lang('assign_project')?> <span class="text-danger">*</span> </label>
+							
+							<select class="select2-option form-control"   required style="width:100%;" name="assign_project" > 
+								<?php foreach (User::all_projects() as $key => $projects) { ?>
+								<option value="<?=$projects->project_id?>"><?=ucfirst($projects->project_title)?></option>
+								<?php } ?>	
+							 
+							</select>
+						</div>
+
+
 						<div class="form-group">
 							<label><?=lang('lead_stage')?> <span class="text-danger">*</span></label>
 							<select name="lead_stage" class="form-control m-b">
