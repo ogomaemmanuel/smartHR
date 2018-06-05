@@ -4,7 +4,16 @@ class Payroll extends MX_Controller {
     {
         parent::__construct();
 		$this->load->library(array('tank_auth'));	
-        $this->load->model(array( 'App'));       
+        $this->load->model(array( 'App'));     
+        $salary_setting = App::salary_setting();
+			  $settingsalray = array();
+                        if(!empty($salary_setting)){
+                            foreach ($salary_setting as  $value) {
+                                $settingsalray[$value->config_key] = $value->value;
+                            }
+                        }
+			 $this->da_percentage = (!empty($settingsalray['salary_da']))?$settingsalray['salary_da']:'1';
+			 $this->hra_percentage = (!empty($settingsalray['salary_hra']))?$settingsalray['salary_hra']:'1';  
     }
     function index()
     {
@@ -23,6 +32,8 @@ class Payroll extends MX_Controller {
     }
 	function create()
 	{
+		$data['da_percentage'] = $this->da_percentage;
+		$data['hra_percentage'] = $this->hra_percentage;
 		$data['user_id'] = $this->uri->segment(3);
 		$this->load->view('modal/pay_slip',$data);
 	}
@@ -66,19 +77,20 @@ class Payroll extends MX_Controller {
   			$qry       = "select * from fx_salary where user_id = ".$user_id."";
 			$s_qry     = '';
 			if($year != ''){
-				$s_qry = " and date_created <= '".$date."' order by id desc";
+				$s_qry = " and date_created <= '".$date." 23:59:59' order by date_created desc";
 			}
 			if($year == date('Y') && $month > date('m')){
- 				$s_qry = " order by id desc ";
+ 				$s_qry = " order by date_created desc ";
 			} 
 			$qry .= $s_qry. " limit 1";
-			//echo $qry; exit;
+			  // echo $qry; exit;
  			$res      = $this->db->query($qry)->result_array();
 			$bs       = $da = $hra = '';
 			if(!empty($res)){
 			    $bs  = $res[0]['amount'];
-				$da  = (40*$res[0]['amount']/100);
-				$hra = (15*$res[0]['amount']/100);
+			    $da  = ($this->da_percentage*$res[0]['amount']/100);
+				$hra = ($this->hra_percentage*$res[0]['amount']/100);
+				$bs  = ($bs-($da+$hra));
 			}
  			echo json_encode(array('basic'=>$bs,'da'=>$da,'hra'=>$hra));
  			exit;

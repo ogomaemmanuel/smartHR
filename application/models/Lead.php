@@ -31,8 +31,14 @@ class Lead extends CI_Model
 
 	// Get all leads
 	static function all()
-	{
-		return self::$db->where(array('co_id >' => 0, 'is_lead' => 1))->order_by('company_name','ASC')->get('companies')->result();
+	{	
+		self::$db->select('C.*,P.project_title,U.username');
+		self::$db->from('companies C');
+		self::$db->join('projects P','P.project_id	= C.assign_project');
+		self::$db->join('users U','U.id	= C.assign_to');
+		self::$db->where(array('C.co_id >' => 0, 'C.is_lead' => 1));
+		self::$db->order_by('C.company_name','ASC');
+		return self::$db->get()->result();
 	}
 
 

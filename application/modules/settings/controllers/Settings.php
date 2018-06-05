@@ -84,6 +84,10 @@ class Settings extends MX_Controller {
         if($settings == 'general') {
             $data['countries'] = App::countries();
         }
+        if($settings == 'setting_salary') {
+            $data['salary_setting'] = App::salary_setting();
+
+        }
         if ($settings == 'theme') {
             $data['iconpicker'] = TRUE;
         }
@@ -406,6 +410,9 @@ class Settings extends MX_Controller {
                 case 'payments':
                     $this->_update_payment_settings();
                     break;
+                case 'setting_salary':
+                    $this->_update_salary_settings();
+                    break;
                 case 'system':
                     $this->_update_system_settings('system');
                     break;
@@ -679,6 +686,54 @@ class Settings extends MX_Controller {
             redirect($_SERVER['HTTP_REFERER']);
         }
 
+    }
+    function _update_salary_settings(){
+
+        if ($this->input->post()) {
+            Applib::is_demo();
+
+
+            $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters('<span style="color:red">', '</span><br>');
+            $this->form_validation->set_rules('salary_da', 'Salary DA', 'required');
+            $this->form_validation->set_rules('salary_hra', 'Salary HRA', 'required');
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->session->set_flashdata('response_status', 'error');
+                $this->session->set_flashdata('form_error', validation_errors());
+                $this->session->set_flashdata('message', lang('settings_update_failed'));
+                redirect($_SERVER['HTTP_REFERER']);
+            }else{
+                
+                unset($_POST['settings']);
+                
+                foreach ($_POST as $key => $value) {
+                    
+                    $data = array('config_key' => $key);
+                               $this->db->where($data); 
+                      $count = $this->db->count_all_results('config');
+                      
+                    if($count == 0){
+                        $data['value'] = $value;
+                        $this->db->insert('config', $data);
+                    }else{
+                        $data['value'] = $value;
+                        $this->db->where('config_key', $key)->update('config', $data);
+                    }
+                }
+
+
+                $this->session->set_flashdata('response_status', 'success');
+                $this->session->set_flashdata('message', lang('settings_updated_successfully'));
+                redirect('settings/?settings=setting_salary');
+            }
+        }else{
+            $this->session->set_flashdata('response_status', 'error');
+            $this->session->set_flashdata('message', lang('settings_update_failed'));
+            redirect('settings/?settings=setting_salary');
+        }
+
+       
     }
     function _update_payment_settings(){
         if ($this->input->post()) {

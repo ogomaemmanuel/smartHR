@@ -46,7 +46,7 @@ class Fopdf extends MX_Controller {
 
 			$form_data['user_id']           = $this->input->post('payslip_user_id');
 
-			 $form_data['year']              = $this->input->post('payslip_year');
+			$form_data['year']              = $this->input->post('payslip_year');
 
 			$form_data['month']             = $this->input->post('payslip_month');
 
@@ -84,7 +84,25 @@ class Fopdf extends MX_Controller {
 
 		$data['form_data'] = $form_data;	  
 
-		 $est = $this->load->view('payslip',isset($data) ? $data : NULL,TRUE);	
+	$array = array();
+	
+	$array['user_id'] = $form_data['user_id'];
+	$array['p_year'] = $form_data['year'];
+	$array['p_month'] = $form_data['month'];
+
+	$this->db->where($array);
+	$payslip_count = $this->db->count_all_results('payslip');
+	if($payslip_count == 0){
+		$array['payslip_details'] = json_encode($form_data);
+		$this->db->insert('payslip', $array);
+	}else{
+	
+		$array1['payslip_details'] = json_encode($form_data);
+		$this->db->where($array);
+		$this->db->update('payslip', $array1);
+	}
+
+	 $est = $this->load->view('payslip',isset($data) ? $data : NULL,TRUE);	
 
 		return $est;			
 

@@ -9,9 +9,9 @@
 	<div class="table-responsive">
 	   <?php 
 		$users_list = $this->db->query("SELECT u.*,ad.*,(select concat(amount,'[^]',date_created) from fx_salary where user_id = u.id order by id desc limit 1) as salary_det
-										FROM `fx_users` u  
-										left join fx_account_details ad on ad.user_id = u.id 
-										where u.activated = 1 and u.role_id = 3 order by u.created desc")->result_array();
+									FROM `fx_users` u  
+									left join fx_account_details ad on ad.user_id = u.id 
+									where u.activated = 1 and u.role_id = 3 order by u.created desc")->result_array();
 	   ?>
 	   <table id="table-users" class="table table-striped custom-table m-b-0 AppendDataTables">
 			<thead>

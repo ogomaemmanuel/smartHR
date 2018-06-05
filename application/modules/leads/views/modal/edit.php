@@ -27,6 +27,29 @@
 							<label><?=lang('lead_value')?> <span class="text-danger">*</span> (e.g 500.00)</label>
 							<input type="text" name="transaction_value" value="<?=$i->transaction_value?>" class="form-control" required>
 						</div>
+							<div class="form-group">
+							<label><?=lang('assigned_to')?> <span class="text-danger">*</span></label>
+							<!-- Build your select: -->
+							<select class="select2-option form-control"   required style="width:100%;" name="assign_to" > 
+								<optgroup label="<?=lang('admin_staff')?>"> 
+								<?php foreach (User::team() as $key => $user) { ?>
+								<option  <?php echo ($i->assign_to == $user->id)?'selected="selected"':''; ?>  value="<?=$user->id?>"><?=ucfirst(User::displayName($user->id))?></option>
+								<?php } ?>	
+								</optgroup> 
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label><?=lang('assign_project')?> <span class="text-danger">*</span> </label>
+							
+							<select class="select2-option form-control"   required style="width:100%;" name="assign_project" > 
+								<?php foreach (User::all_projects() as $key => $projects) { ?>
+								<option <?php echo ($i->assign_project == $projects->project_id)?'selected="selected"':''; ?> value="<?=$projects->project_id?>"><?=ucfirst($projects->project_title)?></option>
+								<?php } ?>	
+							 
+							</select>
+						</div>
+
 						<div class="form-group">
 							<label><?=lang('lead_stage')?> <span class="text-danger">*</span></label>
 							<select name="lead_stage" class="form-control m-b">

@@ -13,7 +13,7 @@
 							<label>Year <span class="text-danger">*</span></label>
 							<select class="select2-option form-control" style="width:100%;"  name="payslip_year" id="payslip_year" required onchange="staff_salary_detail(<?=$user_id?>);"> 
 								<option value=""> -- Select Year -- </option>
-								<?php for($i = 2013;$i <= date('Y'); $i++ ){ ?>
+								<?php for($i = 2015;$i <= date('Y'); $i++ ){ ?>
 								<option value="<?=$i?>" <?php if($i == date('Y')){ echo "selected";}?>><?=$i?></option>
 								<?php } ?>       
 							</select>
@@ -45,19 +45,19 @@
 							$basic = $da = $hra = '';
 							$curr_slry_res = $this->db->query("SELECT amount from fx_salary where user_id = ".$user_id." order by id desc limit 1")->result_array();
 							if(!empty($curr_slry_res)){
-							$da     = (40*$curr_slry_res[0]['amount']/100);
-							$hra    = (15*$curr_slry_res[0]['amount']/100);
+							$da     = ($da_percentage*$curr_slry_res[0]['amount']/100);
+							$hra    = ($hra_percentage*$curr_slry_res[0]['amount']/100);
 							$basic  = ($curr_slry_res[0]['amount']-($da+$hra));
 							}
 							?> 
 							<input type="text" name="payslip_basic" id="payslip_basic"  class="form-control"  value="<?=$basic?>" readonly="readonly">
 						</div>
 						<div class="form-group">
-							<label> DA(40%) </label>
+							<label> DA(<?php echo $da_percentage; ?>%) </label>
 							<input type="text" name="payslip_da" id="payslip_da" class="form-control"  value="<?=$da?>" readonly="readonly">
 						</div>
 						<div class="form-group">
-							<label>HRA(15%) </label>
+							<label>HRA(<?php echo $hra_percentage; ?>%) </label>
 							<input type="text" name="payslip_hra" id="payslip_hra" class="form-control"  value="<?=$hra?>" readonly="readonly">
 						</div>
 						<div class="form-group">

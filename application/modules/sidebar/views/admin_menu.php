@@ -1,6 +1,6 @@
 <div class="sidebar-<?=config_item('sidebar_theme')?> sidebar" id="nav">
 	<div class="slimscroll">	
-		<?php if(config_item('enable_languages') == 'TRUE'){ ?>
+		<?php if(config_item('enable_languages') == 'TRUE'){/* ?>
 		<div class="language-menu">
 			<div class="dropdown">
 				<button type="button" class="btn btn-sm btn-default dropdown-toggle btn-block hidden-nav-xs" data-toggle="dropdown"><?=lang('languages')?> <span class="caret"></span></button>
@@ -15,7 +15,7 @@
 				</ul>
 			</div>
 		</div>
-		<?php } ?>
+		<?php */} ?>
 		<div id="sidebar-menu" class="sidebar-menu">
 			<ul class="nav">
 				<?php
@@ -30,12 +30,14 @@
 				if($open_tickets > 0){ $badge['menu_tickets'] = '<b class="badge bg-primary pull-right">'.$open_tickets.'</b>'; }
 
 				$menus = $this->db->where('access',1)->where('visible',1)->where('parent','')->where('hook','main_menu_admin')->order_by('order','ASC')->get('hooks')->result();
-				
+				 
 				foreach ($menus as $menu) {
+				 
 					$sub = $this->db->where('access',1)->where('visible',1)->where('parent',$menu->module)->where('hook','main_menu_admin')->order_by('order','ASC')->get('hooks');
 				?>
 				<?php if ($sub->num_rows() > 0) {
 				$submenus = $sub->result(); 
+				
 
 				?>
 				<li class="<?php

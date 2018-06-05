@@ -173,7 +173,14 @@ class App extends CI_Model
  	static function get_locale(){
  		return self::$db->where('locale',config_item('locale'))->get('locales')->row();
  	}
+ 	// Get Salary settings 
+ 	static function salary_setting(){
 
+ 		 self::$db->or_where('config_key','salary_da');
+ 		 self::$db->or_where('config_key','salary_hra');
+		return self::$db->get('config')->result();
+
+ 	}
  	// Get locales
  	static function locales()
 	{

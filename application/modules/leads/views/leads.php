@@ -21,6 +21,8 @@
 						<tr>
 							<th><?=lang('company')?> </th>
 							<th><?=lang('lead_value')?></th>
+							<th>Project</th>
+							<th>Lead</th>
 							<th><?=lang('lead_stage')?></th>
 							<th class="hidden-sm"><?=lang('primary_contact')?></th>
 							<th><?=lang('email')?> </th>
@@ -41,6 +43,8 @@
 							<td>
 								<strong><?=Applib::format_currency($l->currency, $l->transaction_value)?></strong>
 							</td>
+							<td><?=$l->project_title;  ?></td>
+							<td><?=$l->username;  ?></td>
 							<td>
 								<span class="label label-default"><?=App::get_category_by_id($l->lead_stage);?></span>
 							</td>
