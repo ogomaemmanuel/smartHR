@@ -27,6 +27,7 @@
 							<label><?=lang('lead_value')?> <span class="text-danger">*</span> (e.g 500.00)</label>
 							<input type="text" name="transaction_value" value="<?=$i->transaction_value?>" class="form-control" required>
 						</div>
+						<?php /* ?>
 							<div class="form-group">
 							<label><?=lang('assigned_to')?> <span class="text-danger">*</span></label>
 							<!-- Build your select: -->
@@ -49,7 +50,7 @@
 							 
 							</select>
 						</div>
-
+						<?php */ ?>
 						<div class="form-group">
 							<label><?=lang('lead_stage')?> <span class="text-danger">*</span></label>
 							<select name="lead_stage" class="form-control m-b">

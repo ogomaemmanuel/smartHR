@@ -61,6 +61,23 @@
 						<?php if (User::is_admin() || User::perm_allowed(User::get_id(),'add_projects')) { ?>
 						<?php if (User::is_admin()) { ?>
 						<div class="form-group">
+							<label>Lead Name <span class="text-danger">*</span></label>
+							<!-- Build your select: -->
+							<select class="select2-option" required style="width:100%;" name="assign_lead" > 
+								<optgroup label="<?=lang('admin_staff')?>"> 
+								<?php foreach (User::team() as $key => $user) { ?>
+								<option value="<?=$user->id?>"><?=ucfirst(User::displayName($user->id))?></option>
+								<?php } ?>	
+								</optgroup> 
+							</select>
+						</div>
+						<?php } ?>
+						<?php } ?>
+					</div>
+					<div class="col-md-6">
+						<?php if (User::is_admin() || User::perm_allowed(User::get_id(),'add_projects')) { ?>
+						<?php if (User::is_admin()) { ?>
+						<div class="form-group">
 							<label><?=lang('assigned_to')?> <span class="text-danger">*</span></label>
 							<!-- Build your select: -->
 							<select class="select2-option" multiple="multiple" required style="width:100%;" name="assign_to[]" > 

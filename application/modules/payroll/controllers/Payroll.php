@@ -73,6 +73,21 @@ class Payroll extends MX_Controller {
   			$user_id   = $this->input->post('user_id');  
  			$year      = $this->input->post('year');
 			$month     = $this->input->post('month');
+			$this->db->where('user_id', $user_id);
+			$this->db->where('p_year', $year);
+			$this->db->where('p_month', $month);
+			$details = $this->db->get('payslip')->row();
+			
+			if(!empty($details)){
+
+				$details = json_decode($details->payslip_details,TRUE);
+				$bs = $details['basic'];
+				$da = $details['da'];
+				$hra = $details['hra'];
+			echo json_encode(array('basic'=>$bs,'da'=>$da,'hra'=>$hra,'payment_details'=>$details));
+			exit;	
+			}else{
+
 			$date      = $year."-".$month."-31";
   			$qry       = "select * from fx_salary where user_id = ".$user_id."";
 			$s_qry     = '';
@@ -91,9 +106,10 @@ class Payroll extends MX_Controller {
 			    $da  = ($this->da_percentage*$res[0]['amount']/100);
 				$hra = ($this->hra_percentage*$res[0]['amount']/100);
 				$bs  = ($bs-($da+$hra));
-			}
- 			echo json_encode(array('basic'=>$bs,'da'=>$da,'hra'=>$hra));
+ 			echo json_encode(array('basic'=>$bs,'da'=>$da,'hra'=>$hra,'payment_details'=>array()));
  			exit;
+			}
+			}
  	} 
 	
 	

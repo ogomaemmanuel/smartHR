@@ -4,10 +4,10 @@
 			<h4 class="page-title"><?=lang('leads')?></h4>
 		</div>
 		<div class="col-xs-8 text-right m-b-20">
-			<a href="<?=base_url()?>leads/create" class="btn btn-primary rounded pull-right" data-toggle="ajaxModal" title="<?=lang('new_lead')?>" data-placement="left"><i class="fa fa-plus"></i> <?=lang('new_lead')?></a>
+			<!-- <a href="<?=base_url()?>leads/create" class="btn btn-primary rounded pull-right" data-toggle="ajaxModal" title="<?=lang('new_lead')?>" data-placement="left"><i class="fa fa-plus"></i> <?=lang('new_lead')?></a> -->
 			<div class="view-icons">
-				<a href="<?=base_url()?>leads?list=kanban" class="list-view btn btn-link" data-toggle="tooltip" title="Kanban View" data-placement="bottom"><i class="fa fa-list"></i></a>
-				<a href="<?=base_url()?>leads?list=table" class="grid-view btn btn-link" data-toggle="tooltip" title="Table View" data-placement="bottom"><i class="fa fa-th"></i></a>
+				<a href="<?=base_url()?>leads?list=table" class="list-view btn btn-link" data-toggle="tooltip" title="Table View" data-placement="bottom"><i class="fa fa-list"></i></a>
+				<a href="<?=base_url()?>leads?list=kanban" class="grid-view btn btn-link" data-toggle="tooltip" title="Kanban View" data-placement="bottom"><i class="fa fa-th"></i></a>
 			</div>
 		</div>
 	</div>
@@ -21,8 +21,7 @@
 						<tr>
 							<th><?=lang('company')?> </th>
 							<th><?=lang('lead_value')?></th>
-							<th>Project</th>
-							<th>Lead</th>
+						 
 							<th><?=lang('lead_stage')?></th>
 							<th class="hidden-sm"><?=lang('primary_contact')?></th>
 							<th><?=lang('email')?> </th>
@@ -43,8 +42,7 @@
 							<td>
 								<strong><?=Applib::format_currency($l->currency, $l->transaction_value)?></strong>
 							</td>
-							<td><?=$l->project_title;  ?></td>
-							<td><?=$l->username;  ?></td>
+							 
 							<td>
 								<span class="label label-default"><?=App::get_category_by_id($l->lead_stage);?></span>
 							</td>

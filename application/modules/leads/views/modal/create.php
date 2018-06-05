@@ -30,7 +30,7 @@ $company_ref = config_item('company_id_prefix').$this->applib->generate_string()
 							<label><?=lang('lead_value')?> <span class="text-danger">*</span> (e.g 500.00)</label>
 							<input type="text" name="transaction_value" value="0.00" class="form-control" required>
 						</div>
-
+						<?php /*	 ?>
 							<div class="form-group">
 							<label><?=lang('assigned_to')?> <span class="text-danger">*</span></label>
 							<!-- Build your select: -->
@@ -52,7 +52,7 @@ $company_ref = config_item('company_id_prefix').$this->applib->generate_string()
 								<?php } ?>	
 							 
 							</select>
-						</div>
+						</div> <?php */ ?>
 
 
 						<div class="form-group">
