@@ -47,7 +47,7 @@ class Payroll extends MX_Controller {
 		if ($this->input->post()) {
   			$det['user_id']       = $this->input->post('salary_user_id');  
  			$det['amount']        = $this->input->post('user_salary_amount');
-			$det['date_created']  = date('Y-m-01');
+			$det['date_created']  = date('Y-m-d H:i:s');
 			$this->db->insert('fx_salary',$det);  
 			//$this->session->set_flashdata('alert_message', 'error');
 			redirect('payroll');
@@ -61,6 +61,7 @@ class Payroll extends MX_Controller {
 	{ 
   			$user_id         = $this->input->post('user_id');  
  			$det['amount']   = $this->input->post('amount');
+ 			$det['date_created'] = date('Y-m-d H:i:s');
 			$id              = $this->input->post('type');
  			$this->db->update('fx_salary',$det,array('id'=>$id));  
 			echo 1;
@@ -68,6 +69,42 @@ class Payroll extends MX_Controller {
 			//redirect('payroll');
  		    exit;
 	}
+
+
+	function view_salary_slip(){
+
+		if($this->input->post()){
+			
+			
+			$this->load->module('layouts');
+			$this->load->library('template');
+			$this->template->title('Payroll');
+			$data['datepicker'] = TRUE;
+			$data['form']       = TRUE; 
+			$data['page']       = 'payroll';
+			$data['role']       = $this->tank_auth->get_role_id();
+			$data['pay_slip_details'] = $this->input->post();
+			
+			$this->template->set_layout('users')
+			 ->build('salary_detail',isset($data) ? $data : NULL);
+		}
+	}
+	
+	function employee(){
+
+			$this->load->module('layouts');
+			$this->load->library('template');
+			$this->template->title('Payroll');
+			$data['datepicker'] = TRUE;
+			$data['form']       = TRUE; 
+			$data['page']       = 'payroll';
+			$data['role']       = $this->tank_auth->get_role_id();
+			
+			
+			$this->template->set_layout('users')
+			 ->build('employee_salary_detail',isset($data) ? $data : NULL);
+	}
+
 	function salary_detail()
 	{ 
   			$user_id   = $this->input->post('user_id');  
@@ -77,13 +114,13 @@ class Payroll extends MX_Controller {
 			$this->db->where('p_year', $year);
 			$this->db->where('p_month', $month);
 			$details = $this->db->get('payslip')->row();
-			
+
 			if(!empty($details)){
 
 				$details = json_decode($details->payslip_details,TRUE);
-				$bs = $details['basic'];
-				$da = $details['da'];
-				$hra = $details['hra'];
+				$bs = $details['payslip_basic'];
+				$da = $details['payslip_da'];
+				$hra = $details['payslip_hra'];
 			echo json_encode(array('basic'=>$bs,'da'=>$da,'hra'=>$hra,'payment_details'=>$details));
 			exit;	
 			}else{

@@ -4,7 +4,19 @@
 			<button type="button" class="close" data-dismiss="modal">&times;</button> 
 			<h4 class="modal-title"> Create Pay Slip </h4>
 		</div>
-		<?php echo form_open(base_url().'fopdf/payslip_pdf'); ?>
+		<?php 
+
+			$this->db->select('U.created');
+			$this->db->from('users U');
+			$this->db->where('U.id', $user_id);
+			$employee_info = $this->db->get()->row();
+			$joindate = $employee_info->created;
+			$year  = date('Y',strtotime($joindate));
+			$month = date('m',strtotime($joindate));
+
+		 ?>
+		<?php echo form_open(base_url().'payroll/view_salary_slip'); ?>
+		<?php /*echo form_open(base_url().'fopdf/payslip_pdf');*/ ?>
 			<div class="modal-body">
 				<input type="hidden" name="payslip_user_id" value="<?=$user_id?>"> 
 				<div class="row"> 
@@ -13,7 +25,7 @@
 							<label>Year <span class="text-danger">*</span></label>
 							<select class="select2-option form-control" style="width:100%;"  name="payslip_year" id="payslip_year" required onchange="staff_salary_detail(<?=$user_id?>);"> 
 								<option value=""> -- Select Year -- </option>
-								<?php for($i = 2015;$i <= date('Y'); $i++ ){ ?>
+								<?php for($i = $year ;$i <= date('Y'); $i++ ){ ?>
 								<option value="<?=$i?>" <?php if($i == date('Y')){ echo "selected";}?>><?=$i?></option>
 								<?php } ?>       
 							</select>
@@ -28,9 +40,20 @@
 							?>
 							<select class="select2-option form-control" style="width:100%; padding:5px"  name="payslip_month" id="payslip_month" required onchange="staff_salary_detail(<?=$user_id?>);"> 
 								<option value=""> -- Select month -- </option>
-								<?php foreach($mons as $key => $vl){ ?>
-								<option value="<?=$key?>" <?php if($key == date('m')){ echo "selected";}?>><?=$vl?></option>
-								<?php } ?>       
+						<?php 
+						if($year == date('Y')){
+						foreach($mons as $key => $vl){ 
+							if($key >= $month && $key<=date('m')){ ?>
+						<option value="<?=$key?>" <?php if($key == date('m')){ echo "selected";}?>><?=$vl?></option>
+						<?php }
+							}
+						 }else{ 
+					foreach($mons as $key => $vl){ ?>
+					<option value="<?=$key?>" <?php if($key == date('m')){ echo "selected";}?>><?=$vl?></option>
+					<?php 
+							
+							}
+						} ?>       
 							</select>
 						</div>
 					</div>
@@ -42,13 +65,44 @@
 						<div class="form-group">
 							<label> Basic  </label>
 							<?php
-							$basic = $da = $hra = '';
-							$curr_slry_res = $this->db->query("SELECT amount from fx_salary where user_id = ".$user_id." order by id desc limit 1")->result_array();
+							$basic = $da = $hra = $conveyance = $allowance = $medical_allowance = $others = $ded_tds = $ded_esi = $ded_pf = $ded_prof = $ded_leave = $ded_welfare = $ded_fund = $ded_others = '';
+							$year = date('Y');
+							$month = date('m');
+							$this->db->where('user_id', $user_id);
+							$this->db->where('p_year', $year);
+							$this->db->where('p_month', $month);
+							$details = $this->db->get('payslip')->row();
+
+							if(!empty($details)){
+
+								$details = json_decode($details->payslip_details,TRUE);
+								$basic = $details['payslip_basic'];
+								$da = $details['payslip_da'];
+								$hra = $details['payslip_hra'];
+								$conveyance = $details['payslip_conveyance'];
+								$allowance = $details['payslip_allowance'];
+								$medical_allowance	= $details['payslip_medical_allowance'];
+								$others	= $details['payslip_others'];
+								$ded_tds	= $details['payslip_ded_tds'];
+								$ded_esi	= $details['payslip_ded_esi'];
+								$ded_pf	= $details['payslip_ded_pf'];
+								$ded_prof	= $details['payslip_ded_prof'];
+								$ded_leave	= $details['payslip_ded_leave'];
+								$ded_welfare	= $details['payslip_ded_welfare'];
+								$ded_fund	= $details['payslip_ded_fund'];
+								$ded_others	= $details['payslip_ded_others'];
+
+
+
+							}else{
+								$curr_slry_res = $this->db->query("SELECT amount from fx_salary where user_id = ".$user_id." order by id desc limit 1")->result_array();
 							if(!empty($curr_slry_res)){
 							$da     = ($da_percentage*$curr_slry_res[0]['amount']/100);
 							$hra    = ($hra_percentage*$curr_slry_res[0]['amount']/100);
 							$basic  = ($curr_slry_res[0]['amount']-($da+$hra));
+							}	
 							}
+							
 							?> 
 							<input type="text" name="payslip_basic" id="payslip_basic"  class="form-control"  value="<?=$basic?>" readonly="readonly">
 						</div>
@@ -62,54 +116,54 @@
 						</div>
 						<div class="form-group">
 							<label> Conveyance </label>
-							<input type="text" name="payslip_conveyance" id="payslip_conveyance" class="form-control"  value="" >
+							<input type="text" name="payslip_conveyance" id="payslip_conveyance" class="form-control"  value="<?php echo $conveyance; ?>" >
 						</div>
 						<div class="form-group">
 							<label> Allowance </label>
-							<input type="text" name="payslip_allowance" id="payslip_allowance" class="form-control"  value="" >
+							<input type="text" name="payslip_allowance" id="payslip_allowance" class="form-control"  value="<?php echo $allowance; ?>" >
 						</div>
 						<div class="form-group">
 							<label> Medical  Allowance </label>
-							<input type="text" name="payslip_medical_allowance" id="payslip_medical_allowance" class="form-control"  value="" >
+							<input type="text" name="payslip_medical_allowance" id="payslip_medical_allowance" class="form-control"  value="<?php echo $medical_allowance; ?>" >
 						</div>
 						<div class="form-group">
 							<label> Others </label>
-							<input type="text" name="payslip_others" id="payslip_others" class="form-control"  value="" >
+							<input type="text" name="payslip_others" id="payslip_others" class="form-control"  value="<?php echo $others; ?>" >
 						</div>  
 					</div>  
 					<div class="col-md-6">
 						<h4 class="text-primary"> Deductions </h4>
 						<div class="form-group">
 							<label> TDS </label>
-							<input type="text" name="payslip_ded_tds" id="payslip_ded_tds" class="form-control"  value="" >
+							<input type="text" name="payslip_ded_tds" id="payslip_ded_tds" class="form-control"  value="<?php echo $ded_tds; ?>" >
 						</div> 
 						<div class="form-group">
 							<label> ESI </label>
-							<input type="text" name="payslip_ded_esi" id="payslip_ded_esi" class="form-control"  value="" >
+							<input type="text" name="payslip_ded_esi" id="payslip_ded_esi" class="form-control"  value="<?php echo $ded_esi; ?>" >
 						</div>
 						<div class="form-group">
 							<label>PF</label>
-							<input type="text" name="payslip_ded_pf" id="payslip_ded_pf" class="form-control"  value="" >
+							<input type="text" name="payslip_ded_pf" id="payslip_ded_pf" class="form-control"  value="<?php echo $ded_pf; ?>" >
 						</div>
 						<div class="form-group">
 							<label>Leave</label>
-							<input type="text" name="payslip_ded_leave" id="payslip_ded_leave" class="form-control"  value="" >
+							<input type="text" name="payslip_ded_leave" id="payslip_ded_leave" class="form-control"  value="<?php echo $ded_leave; ?>" >
 						</div>
 						<div class="form-group">
 							<label>Prof. Tax </label>
-							<input type="text" name="payslip_ded_prof" id="payslip_ded_prof" class="form-control"  value="" >
+							<input type="text" name="payslip_ded_prof" id="payslip_ded_prof" class="form-control"  value="<?php echo $ded_prof; ?>" >
 						</div>
 						<div class="form-group">
 							<label>Labour Welfare  </label>
-							<input type="text" name="payslip_ded_welfare" id="payslip_ded_welfare" class="form-control"  value="" >
+							<input type="text" name="payslip_ded_welfare" id="payslip_ded_welfare" class="form-control"  value="<?php echo $ded_welfare; ?>" >
 						</div>
 						<div class="form-group">
 							<label> Fund </label>
-							<input type="text" name="payslip_ded_fund" id="payslip_ded_fund" class="form-control"  value="" >
+							<input type="text" name="payslip_ded_fund" id="payslip_ded_fund" class="form-control"  value="<?php echo $ded_fund; ?>" >
 						</div>
 						<div class="form-group">
 							<label> Others  </label>
-							<input type="text" name="payslip_ded_others" id="payslip_ded_others" class="form-control"  value="" >
+							<input type="text" name="payslip_ded_others" id="payslip_ded_others" class="form-control"  value="<?php echo $ded_others; ?>" >
 						</div>
 					</div>
 				</div>

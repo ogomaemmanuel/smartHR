@@ -1882,20 +1882,20 @@ function staff_salary_detail(user_id)
                                      
                                       var other_details = res.payment_details;
                                      
-                                     if(Object.keys(other_details).length > 0){
+                                     if(typeof(other_details.payslip_conveyance) !=='undefined'){
                                         
-                                         $('#payslip_conveyance').val(other_details.conveyance);  
-                                         $('#payslip_allowance').val(other_details.allowance);  
-                                         $('#payslip_medical_allowance').val(other_details.medical_allowance);  
-                                         $('#payslip_others').val(other_details.others);  
-                                         $('#payslip_ded_tds').val(other_details.deduction_tds);  
-                                         $('#payslip_ded_esi').val(other_details.deduction_esi);  
-                                         $('#payslip_ded_pf').val(other_details.deduction_pf);  
-                                         $('#payslip_ded_leave').val(other_details.deduction_leave);  
-                                         $('#payslip_ded_prof').val(other_details.deduction_prof);  
-                                         $('#payslip_ded_welfare').val(other_details.deduction_welfare);  
-                                         $('#payslip_ded_fund').val(other_details.deduction_fund);  
-                                         $('#payslip_ded_others').val(other_details.deduction_others);    
+                                         $('#payslip_conveyance').val(other_details.payslip_conveyance);  
+                                         $('#payslip_allowance').val(other_details.payslip_allowance);  
+                                         $('#payslip_medical_allowance').val(other_details.payslip_medical_allowance);  
+                                         $('#payslip_others').val(other_details.payslip_others);  
+                                         $('#payslip_ded_tds').val(other_details.payslip_ded_tds);  
+                                         $('#payslip_ded_esi').val(other_details.payslip_ded_esi);  
+                                         $('#payslip_ded_pf').val(other_details.payslip_ded_pf);  
+                                         $('#payslip_ded_leave').val(other_details.payslip_ded_leave);  
+                                         $('#payslip_ded_prof').val(other_details.payslip_ded_prof);  
+                                         $('#payslip_ded_welfare').val(other_details.payslip_ded_welfare);  
+                                         $('#payslip_ded_fund').val(other_details.payslip_ded_fund);  
+                                         $('#payslip_ded_others').val(other_details.payslip_ded_others);    
                                      }else{
                                         $('#payslip_conveyance,#payslip_allowance,#payslip_medical_allowance,#payslip_others,#payslip_ded_tds,#payslip_ded_esi,#payslip_ded_pf,#payslip_ded_leave,#payslip_ded_prof,#payslip_ded_welfare,#payslip_ded_fund,#payslip_ded_others').val('');  
                                          
@@ -1903,7 +1903,9 @@ function staff_salary_detail(user_id)
 
                                       
 
-							  } 
+							  } else{
+                                  $('#payslip_basic,#payslip_da,#payslip_hra,#payslip_conveyance,#payslip_allowance,#payslip_medical_allowance,#payslip_others,#payslip_ded_tds,#payslip_ded_esi,#payslip_ded_pf,#payslip_ded_leave,#payslip_ded_prof,#payslip_ded_welfare,#payslip_ded_fund,#payslip_ded_others').val('');  
+                              }
 
  				  }
 
