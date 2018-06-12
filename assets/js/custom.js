@@ -74,12 +74,21 @@ $(document).on('keyup','#search_user',function(){
     var name = $(this).val();
     $.post(base_url+'chats/new_chat_user',{name:name},function(data,status){
        var newdata =  JSON.parse(data);
-       var html = '<ul class="auto_suggestion">';
+       var html = '<ul class="media-list media-list-linked chat-user-list">';
         if(newdata.length > 0){
             
              $.each(newdata, function(i, item) {
 
-                html = html +'<li onclick="get_new_user('+item.user_id+');remove_current(this);email_list_active(this);chat_details('+item.user_id+')"><a href="javascript:void(0)">'+item.fullname+'</a></li>';
+                html = html +'<li class="media" onclick="get_new_user('+item.user_id+');remove_current(this);email_list_active(this);chat_details('+item.user_id+')">'+
+                                            '<a href="javascript:void(0)" class="media-link">'+
+                                              '  <div class="media-left"><span class="avatar">'+item.fullname[0]+'</span></div>'+
+                                               ' <div class="media-body media-middle text-nowrap">'+
+                                                '    <div class="user-name">'+item.fullname+'</div>'+
+                                                '</div>'+
+                                                '<div class="media-right media-middle text-nowrap">'+
+                                                '</div>'+
+                                            '</a>'+
+                                        '</li>';
             });
         }
         html = html +'</ul>';
@@ -90,6 +99,7 @@ $(document).on('keyup','#search_user',function(){
 
 
 function get_new_user(id) {
+    $('#add_chat_user').modal('hide');
     $.post(base_url+'chats/new_chat_userdetails',{id:id},function(data,status){
           var newdata =  JSON.parse(data);
 
