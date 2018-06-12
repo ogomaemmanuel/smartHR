@@ -51,6 +51,16 @@ class AppLib {
         self::$db = &get_instance()->db;
 
     }
+
+    static function UTC_time_to_localtime($date_posted,$timezone)
+    {
+       
+       $utc      = $date_posted.' UTC';
+       $dt       = new DateTime($utc);
+       $tz       = new DateTimeZone($timezone); // or whatever zone you're after
+       $dt->setTimezone($tz);
+       return $dt->format('Y-m-d H:i:s');
+    }
     public function count_table_rows($table)
     {
         $query = $this->ci->db->get($table);
@@ -609,10 +619,18 @@ class AppLib {
         return $text;
     }
 
-    static function time_elapsed_string($ptime)
+    static function time_elapsed_string($ptime,$timezone = '')
     {
-        date_default_timezone_set(config_item('timezone'));
-        $etime = time() - $ptime;
+        
+        $time_one =  date('Y-m-d H:i:s',$ptime); // From DB
+        
+        if($timezone!=""){
+            date_default_timezone_set($timezone);    
+            $etime = time() - strtotime($time_one);
+        }else{
+            date_default_timezone_set(config_item('timezone'));    
+            $etime = time() - $ptime; 
+        }
 
         if ($etime < 1)
         {

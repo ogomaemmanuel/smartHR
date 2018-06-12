@@ -1,6 +1,6 @@
 <div class="sidebar-<?=config_item('sidebar_theme')?> sidebar" id="nav">
 	<div class="slimscroll">
-		<?php if(config_item('enable_languages') == 'TRUE'){ ?>
+		<?php if(config_item('enable_languages') == 'TRUE'){/* ?>
 		<div class="language-menu">
 			<div class="btn-group dropdown">
 				<button type="button" class="btn btn-sm dropdown-toggle btn-default" data-toggle="dropdown" btn-icon="" title="<?=lang('languages')?>"><i class="fa fa-globe"></i></button>
@@ -16,7 +16,7 @@
 				</ul>
 			</div>
 		</div>
-		<?php } ?>
+		<?php */} ?>
 		<div id="sidebar-menu" class="sidebar-menu">
             <ul class="nav">
 				<?php

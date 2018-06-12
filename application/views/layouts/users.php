@@ -207,10 +207,19 @@
 	<!-- js placed at the end of the document so the pages load faster -->
 	<?php  echo modules::run('sidebar/scripts');?>
 	<script src="<?=base_url()?>assets/js/libs/jquery.maskMoney.min.js" type="text/javascript"></script>
+	<?php 
+		if (empty($this->session->userdata('timezone'))) {
+	 ?>
+	<script src="<?=base_url()?>assets/js/jstz-1.0.4.min.js" type="text/javascript"></script>
 	<script>
 		$(function() {
 			$('.money').maskMoney();
+			var tz = jstz.determine();
+        	var timezone = tz.name();
+        	$.post(base_url+'auth/userzone',{timezone:timezone},function(status){});
+        	//console.log(timezone);
 		})
 	</script>
+	<?php }  ?>
 </body>
 </html>

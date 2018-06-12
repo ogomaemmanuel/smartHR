@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="col-lg-4 control-label"><?=lang('2checkout_live')?></label>
                         <div class="col-lg-4">
                             <label class="switch">
@@ -77,7 +77,7 @@
                             <input type="text" class="form-control" value="<?=config_item('2checkout_seller_id')?>" name="2checkout_seller_id">
                         </div>
                     </div>
-                    <hr>
+                    <hr> -->
                     <div class="form-group">
                         <label class="col-lg-4 control-label"><?=lang('stripe_private_key')?></label>
                         <div class="col-lg-4">
@@ -90,7 +90,7 @@
                             <input type="text" class="form-control" value="<?=config_item('stripe_public_key')?>" name="stripe_public_key">
                         </div>
                     </div>
-					<hr>
+				<!-- 	<hr>
                     <div class="form-group">
                         <label class="col-lg-4 control-label"><?=lang('braintee_live')?></label>
                         <div class="col-lg-4">
@@ -137,7 +137,7 @@
 						<div class="col-lg-4">
 							<span class="help-block m-b-0"><a href="https://api.blockchain.info/v2/apikey/request/" target="_blank">Read More</a></span>
 						</div>
-                    </div>
+                    </div> -->
 					<div class="text-center m-t-30">
                         <button type="submit" class="btn btn-primary btn-lg"><?=lang('save_changes')?></button>
 					</div>

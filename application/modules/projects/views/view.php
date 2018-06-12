@@ -85,7 +85,10 @@
 		$label = $this->db->where('parent', $menu->module)->where('hook', 'project_menu_label_'.$ext)->get('hooks')->result(); ?>
 		<?php if ($menu->permission != '') {
 		$perm = Project::setting($menu->permission, $p->project_id);
-		} ?>
+		} 
+
+		
+		?>
 
 		<?php if ($perm) {
 		$timer_on = 0;

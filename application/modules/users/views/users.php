@@ -76,8 +76,12 @@
 							</td>
 							<td class=""><?=$info->fullname?></td>
 							<td class="">
+								<?php if($info->company >0){ ?>
 								<a href="<?=base_url()?>companies/view/<?=$info->company?>" class="text-info">
 								<?=($info->company > 0) ? Client::view_by_id($info->company)->company_name : 'N/A'; ?></a>
+								<?php }else{ ?>
+								<a href="javascript:void(0)">N/A</a>
+								<?php }  ?>
 							</td>
 							<td>
 								<?php if (User::get_role($user->id) == 'admin') {
@@ -192,8 +196,13 @@
 								<div class="form-group">
 									<label><?=lang('role')?></label>
 									<select name="role" class="form-control">
-										<?php foreach (User::get_roles() as $r) { ?>
+										<?php foreach (User::get_roles() as $r) {
+											if ($r->r_id !=3) {
+													
+												
+										 ?>
 										<option value="<?=$r->r_id?>"><?=ucfirst($r->role)?></option>
+										<?php } ?>
 										<?php } ?>
 									</select>
 								</div>

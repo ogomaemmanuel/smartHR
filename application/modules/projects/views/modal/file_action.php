@@ -131,7 +131,11 @@
                             <?php endif; ?>
                             <tr>
                             <td><?=lang('date');?></td>
-                            <td><?=strftime(config_item('date_format')." %H:%M", strtotime($f->date_posted));?></td></tr>
+                             <?php 
+                            $timezone = $this->session->userdata('timezone');
+                            $date_posted = Applib::UTC_time_to_localtime($f->date_posted,$timezone);
+                         ?>
+                            <td><?=strftime(config_item('date_format')." %H:%M", strtotime($date_posted));?></td></tr>
                         </tbody>
                     </table>
                     </div>

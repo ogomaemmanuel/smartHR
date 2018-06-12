@@ -68,6 +68,8 @@ class Messages extends MX_Controller {
 			if($user != User::get_id()){
 
 				$form_data = array('user_to' => $user,'user_from' => User::get_id(),'message' => $message);
+				date_default_timezone_set('UTC');
+				$form_data['date_received'] = date('Y-m-d H:i:s');
 				App::save_data('messages',$form_data);
 
 				if (config_item('notify_message_received') == 'TRUE') {

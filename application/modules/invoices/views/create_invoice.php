@@ -94,7 +94,8 @@
 								</select>
 							</div>
 						</div>
-						<?php if(config_item('2checkout_private_key') != '' AND config_item('2checkout_publishable_key') != ''){ ?>
+						
+						<?php if(config_item('2checkout_private_key') != '' AND config_item('2checkout_publishable_key') != ''){/* ?>
 						<div class="form-group">
 							<label class="col-lg-3 control-label"><?=lang('allow_2checkout')?></label>
 							<div class="col-lg-4">
@@ -104,7 +105,7 @@
 								</label>
 							</div>
 						</div>
-						<?php } else{ ?><input type="hidden" name="allow_2checkout" value="off"> <?php } ?>
+						<?php */} else{ ?><input type="hidden" name="allow_2checkout" value="off"> <?php } ?>
 						<?php if(config_item('paypal_email') != ''){ ?>
 						<div class="form-group">
 							<label class="col-lg-3 control-label"><?=lang('allow_paypal')?></label>
@@ -128,7 +129,7 @@
 						</div>
 						<?php } else{ ?><input type="hidden" name="allow_stripe" value="off"> <?php } ?>
 
-						<?php if(config_item('braintree_merchant_id') != '' AND config_item('braintree_public_key') != ''){ ?>
+						<?php if(config_item('braintree_merchant_id') != '' AND config_item('braintree_public_key') != ''){/* ?>
 						<div class="form-group">
 							<label class="col-lg-3 control-label"><?=lang('allow_braintree')?></label>
 							<div class="col-lg-4">
@@ -147,9 +148,9 @@
 								<span class="help-block m-b-none small text-danger">If using multi currency <a href="https://articles.braintreepayments.com/control-panel/important-gateway-credentials" target="_blank">Read More</a></span>
 							</div>
 						</div>
-						<?php } else{ ?><input type="hidden" name="allow_braintree" value="off"> <?php } ?>
+						<?php */} else{ ?><input type="hidden" name="allow_braintree" value="off"> <?php } ?>
 
-						<?php if(config_item('bitcoin_address') != ''){ ?>
+						<?php if(config_item('bitcoin_address') != ''){/* ?>
 							<div class="form-group">
 								<label class="col-lg-3 control-label"><?=lang('allow_bitcoin')?></label>
 								<div class="col-lg-4">
@@ -159,7 +160,7 @@
 									</label>
 								</div>
 							</div>
-						<?php } else{ ?><input type="hidden" name="allow_bitcoin" value="off"> <?php } ?>
+						<?php */} else{ ?><input type="hidden" name="allow_bitcoin" value="off"> <?php } ?>
 
 						<div class="form-group terms">
 							<label class="col-lg-3 control-label"><?=lang('notes')?> </label>

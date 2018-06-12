@@ -304,7 +304,7 @@ class Tank_auth
 				$data['user_id'] = $res['user_id'];
 
                                 $co = $this->ci->db->where('co_id',$company)->get('companies')->result();
-                                $com = $co[0];
+                                $com = (!empty($co[0]))?$co[0]:'';
                                 if (intval($com->primary_contact) == 0) {
                                     $this->ci->db->where('co_id',$company)->update('companies',array('primary_contact'=>$res['user_id']));
                                 }

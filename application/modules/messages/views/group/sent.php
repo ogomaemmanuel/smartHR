@@ -5,7 +5,7 @@
 			<img src="<?php echo User::avatar_url($msg->user_to); ?>" class="img-circle">
 		</div>
 		<span class="mail-date">
-			<?php echo Applib::time_elapsed_string(strtotime($msg->date_received)); ?>
+			<?php echo Applib::time_elapsed_string(strtotime($msg->date_received),'UTC'); ?>
 		</span>
 		<span class="name"><?=ucfirst(User::displayName($msg->user_to));?></span>
 		<span class="subject">

@@ -488,12 +488,16 @@ class Chats extends MX_Controller {
 	}
 	public function chat_details() {  
  	     $chat_id  = $this->input->post('user_id');
-		 $sess_id  = $this->tank_auth->get_user_id();   
+		 $sess_id  = $this->tank_auth->get_user_id(); 
 		 $chat_det  = $this->chats_model->chat_text_details($chat_id,$sess_id,2);
+
     	 $html 	  = ''; 
-		 if(!empty($chat_det)){ 
-  			 
-  			 if(!empty($chat_det[0]['text_content'])){ 
+		 if(!empty($chat_det)){
+
+  			 if($chat_det[0]['text_content'] == ''){
+  			 	unset($chat_det[0]);
+  			 }	
+  			 if(!empty($chat_det[0]['text_content']) || !empty($chat_det[1]['text_content'])){ 
 
   			 foreach($chat_det as $key => $val){
 
@@ -560,7 +564,10 @@ class Chats extends MX_Controller {
 					 $this->db->update('fx_chats_text',$data_up,array('id'=>$val['id']));
 				 } 
 		 }
-		 }
+		 }else {
+		     $html = '<p style="color: red"> &nbsp; &nbsp; No Chats Availabe </p>';	 
+ 		 }
+		 
 		 }else {
 		     $html = '<p style="color: red"> &nbsp; &nbsp; No Chats Availabe </p>';	 
  		 }

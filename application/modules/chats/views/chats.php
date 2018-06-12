@@ -4,10 +4,10 @@
 	<div class="col-xs-3 profile-right chat-profile-view">
 		<div class="chat-user-list">
 			<div class="new_chat_btn">
-				<a href="javascript:void(0)" class="btn btn-primary" id="new_chat" >Create new message</a>
+				<a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#add_chat_user" >Create new message</a>
 				<div class="new_chat_search" style="display: none;">
 					<input type="text" name="search_user" id="search_user" value=""   class="form-control">
-					<div class="new_user_list"></div>
+					<div class="new_user_list1"></div>
 				</div>
 			</div>
 			<br/>
@@ -99,3 +99,31 @@
 	</div>
 </div>
 </div>
+
+<div id="add_chat_user" class="modal custom-modal fade center-modal" role="dialog">
+					<div class="modal-dialog">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<div class="modal-content">
+							<div class="modal-header">
+								<h3 class="modal-title">Direct Chat</h3>
+							</div>
+							<div class="modal-body">
+								<div class="input-group m-b-30">
+									<input placeholder="Search to start a chat" class="form-control search-input input-lg" name="search_user" id="search_user" type="text">
+									
+									<span class="input-group-btn">
+										<button class="btn btn-primary btn-lg">Search</button>
+									</span>
+								</div>
+								<div>
+									<h5>Conversations with</h5>
+									<div class="new_user_list"></div>
+									
+								</div>
+								<!-- <div class="m-t-50 text-center">
+									<button class="btn btn-primary btn-lg">Start Chat</button>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				</div>

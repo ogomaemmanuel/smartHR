@@ -23,12 +23,12 @@
 							<label><?=lang('full_name')?> <span class="text-danger">*</span></label>
 							<input type="text" class="form-control" name="fullname" value="<?=$profile->fullname?>" required>
 						</div>
-						<?php if(User::is_staff()){ ?>
+						<?php if(User::is_staff()){/* ?>
 						<div class="form-group">
 							<label><?=lang('hourly_rate')?> <span class="text-danger">*</span></label>
 							<input type="text" class="form-control" name="hourly_rate" value="<?=$profile->hourly_rate?>" required>
 						</div>
-						<?php } ?>
+						<?php */} ?>
 						<input type="hidden" value="<?=$profile->company?>" name="co_id">
 						<?php
 						if ($profile->company > 0) {
@@ -158,6 +158,12 @@
 					</form>
 				</div>
 			</div>
+			<?php 
+				$role_id = $this->session->userdata('role_id');
+				
+				 if($role_id !=1){
+
+			 ?>
 			<div class="panel">
 				<div class="panel-heading">
 					<h6 class="panel-title"><?=lang('change_username')?></h6>
@@ -178,6 +184,7 @@
 				</div>
 			</div>
 			<!-- /Account form -->
+			<?php }  ?>
 		</div>
 	</div>
 </div>

@@ -71,7 +71,12 @@
 
                         <td class=""><?=number_format($f->size,0,config_item('decimal_separator'),  config_item('thousand_separator'))?> KB</td>
                         <td class="col-date">
-                        <?=strftime(config_item('date_format')." %H:%m",strtotime($f->date_posted));?></td>
+                           <?php 
+                            $timezone = $this->session->userdata('timezone');
+                            $date_posted = Applib::UTC_time_to_localtime($f->date_posted,$timezone);
+                            $date_posted = date(str_replace('%','',config_item('date_format')).' H:i',strtotime($date_posted));
+                         ?>
+                        <?=$date_posted;?></td>
                         <td>
                         <a class="pull-left thumb-sm avatar">
                         

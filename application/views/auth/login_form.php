@@ -43,7 +43,7 @@ $captcha = array(
 				<img src="<?=base_url()?>assets/images/<?=config_item('company_logo')?>" class="<?=($display == 'logo' ? "" : "login-logo")?>">
 				<?php } ?>
 			</div>
-			<?php if(config_item('enable_languages') == 'TRUE'){ ?>
+			<?php if(config_item('enable_languages') == 'TRUE'){/* ?>
 			<div class="langage-menu2 text-right clearfix">
 				<div class="btn-group dropdown">
 					<button type="button" class="btn btn-sm dropdown-toggle btn-default" data-toggle="dropdown" btn-icon="" title="<?=lang('languages')?>"><i class="fa fa-globe"></i></button>
@@ -60,7 +60,7 @@ $captcha = array(
 					</ul>
 				</div>
 			</div>
-			<?php } ?>
+			<?php */} ?>
 			<?php
 			$attributes = array('class' => '');
 			echo form_open($this->uri->uri_string(),$attributes); ?>

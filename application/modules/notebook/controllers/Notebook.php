@@ -13,7 +13,8 @@ class Notebook extends MX_Controller {
 		$this->template->title(lang('notes').' - '.config_item('company_name'));
 		$this->load->model(array('Note','App'));
 		//App::module_access('menu_notes');
-		$this->applib->set_locale();
+		 $this->applib->set_locale();
+
 		
 	}
 
@@ -26,6 +27,7 @@ class Notebook extends MX_Controller {
 		$this->template
 			->set_layout('users')
 			->build('notes',isset($data) ? $data : NULL);
+
 	
 	}
 }

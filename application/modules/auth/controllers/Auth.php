@@ -21,7 +21,12 @@ class Auth extends MX_Controller
         $this->load->model(array('App'));
 
     }
-
+    function userzone(){
+        if($this->input->post('timezone')){
+            $timezone  = $this->input->post('timezone');
+            $this->session->set_userdata('timezone',$timezone);
+        }
+    }
     function index()
     {
         if ($message = $this->session->flashdata('message')) {
@@ -255,8 +260,10 @@ class Auth extends MX_Controller
         $this->form_validation->set_rules('email', lang('email'), 'trim|required|xss_clean|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|xss_clean');
         $this->form_validation->set_rules('confirm_password', lang('confirm_password'), 'trim|required|xss_clean|matches[password]');
+        
+        
 
-        $email_contact = ($this->input->post('email_contact')[0] == 'Yes') ? TRUE : FALSE;
+         $email_contact = ($this->input->post('email_contact')[0] == 'Yes') ? TRUE : FALSE;
 
         if ($this->form_validation->run($this)) {		// validation ok
             if (!is_null($data = $this->tank_auth->admin_create_user(
@@ -283,9 +290,11 @@ class Auth extends MX_Controller
                     redirect($this->input->post('r_url'));
 
                 } else {
+                    
+                    // if (config_item('email_account_details') == 'TRUE' && $email_contact) {	// send "welcome" email
+                    if (config_item('email_account_details') == 'TRUE') { // send "welcome" email
+                         $this->_send_email('welcome', $data['email'], $data);
 
-                    if (config_item('email_account_details') == 'TRUE' && $email_contact) {	// send "welcome" email
-                        $this->_send_email('welcome', $data['email'], $data);
                     }
 
                     unset($data['password']); // Clear password (just for any case)
@@ -541,13 +550,14 @@ class Auth extends MX_Controller
 
             $data['errors'] = array();
 
-            if ($this->form_validation->run()) {								// validation ok
+            if ($this->form_validation->run()) {	
+
                 if (!is_null($data = $this->tank_auth->set_new_email(
                     $this->form_validation->set_value('email'),
                     $this->form_validation->set_value('password')))) {			// success
 
                     $data['site_name'] = config_item('company_name');
-
+                     
                     // Send email with new email address and its activation link
                     $this->_send_email('change_email', $data['new_email'], $data);
 
@@ -580,19 +590,23 @@ class Auth extends MX_Controller
 
         } else {
 
-            Applib::is_demo();
+             Applib::is_demo();
 
             $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|is_unique[users.username]');
-
+            
+           
             $data['errors'] = array();
 
-            if ($this->form_validation->run($this)) {								// validation ok
-                $this->db->set('username', $this->input->post('username', TRUE));
+             if ($this->form_validation->run()!=FALSE) {								// validation ok
+            
+
+               $this->db->set('username', $this->input->post('username', TRUE));
                 $this->db->where('username',$this->tank_auth->get_username())->update('users');
                 $this->session->set_flashdata('response_status', 'success');
                 $this->session->set_flashdata('message',lang('username_changed_successfully'));
                 redirect($this->input->post('r_url'));
             }
+            
             $this->session->set_flashdata('response_status', 'error');
             $this->session->set_flashdata('message',lang('username_not_available'));
             redirect('profile/settings');

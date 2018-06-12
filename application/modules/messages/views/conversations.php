@@ -98,7 +98,7 @@
 																			<a href="<?=base_url()?>messages/favourite/<?=$msg->msg_id?>" title="<?=lang('favourite')?>"><i class="fa <?=($msg->favourite) ? 'fa-heart text-danger' : 'fa-heart-o';?> text-danger"></i></a>
 																			<?php } ?>
 																			<i class="fa fa-clock-o"></i>
-																			<?php echo Applib::time_elapsed_string(strtotime($msg->date_received)); ?>
+																			<?php echo Applib::time_elapsed_string(strtotime($msg->date_received),'UTC'); ?>
 																			<?php
 																			if ($msg->user_to == User::get_id()) { ?>
 																			<a href="<?=base_url()?>messages/delete/<?=$msg->msg_id?>" data-toggle="ajaxModal" class="btn btn-danger btn-xs active"><i class="fa fa-trash-o text-white text-active"></i>

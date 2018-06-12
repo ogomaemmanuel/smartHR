@@ -94,8 +94,12 @@
 					<h2><a href="javascript:void(0)"><?=$info->fullname?> <span><!-- Web Developer --></span></a></h2>
 				</td>
 				<td class="">
+					<?php if($info->company > 0){ ?>
 					<a href="<?=base_url()?>companies/view/<?=$info->company?>" class="text-info">
 					<?=($info->company > 0) ? Client::view_by_id($info->company)->company_name : 'N/A'; ?></a>
+					<?php }else{ ?>
+					<a href="javascript:void(0)">N/A</a>
+					<?php }  ?>
 				</td>
 				<td class=""><?='FT-00'.$info->user_id?></td>
 				<td class=""><?=$user->email?></td>

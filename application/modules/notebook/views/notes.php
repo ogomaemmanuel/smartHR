@@ -51,11 +51,11 @@
                     <section class="bg-light lter">
                       <section class="hbox stretch">
                         <aside>
-                          <section class="vbox note-wrapper">
+                          <!-- <section class="vbox note-wrapper">
                             <section class="paper">
 <textarea class="form-control notes" placeholder="Type your note here"><%- description %></textarea>
                             </section>
-                          </section>
+                          </section> -->
                         </aside>
                       </section>
                     </section>

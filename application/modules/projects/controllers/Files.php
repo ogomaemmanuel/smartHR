@@ -59,6 +59,7 @@ class Files extends MX_Controller {
                                 'description'	=> $description,
                                 'uploaded_by'	=> User::get_id(),
                             );
+                            $data['date_posted'] = date('Y-m-d H:i:s');
                             $file_id = App::save_data('files',$data);
                         }
 
@@ -102,8 +103,12 @@ class Files extends MX_Controller {
 			$project = $this->input->post('project', TRUE);
 			$title = $this->input->post('title', TRUE);
 			$file_id = $this->input->post('file_id', TRUE);
+            $array = array();
+            date_default_timezone_set('UTC');
+            $array = $this->input->post();
+            $array['date_posted'] = date('Y-m-d H:i:s');
 
-			App::update('files',array('file_id'=>$file_id),$this->input->post());
+			App::update('files',array('file_id'=>$file_id),$array);
 			 // Log activity
                     $data = array(
                         'module' => 'files',
